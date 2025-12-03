@@ -1,0 +1,13 @@
+ <div id="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 200; align-items: center; justify-content: center;">
+	<div class="modal-content" style="background: var(--bg); border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+			<h2 style="margin: 0; color: var(--text);">Título del Modal</h2>
+			<button onclick="document.getElementById('modal').style.display='none';" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted-text);">✕</button>
+		</div>
+		<div style="margin-bottom: 20px; color: var(--muted-text);">Contenido del modal</div>
+		<div style="display: flex; gap: 10px; justify-content: flex-end;">
+			<button onclick="document.getElementById('modal').style.display='none';" style="padding: 10px 20px; background: var(--muted); border: none; border-radius: 6px; cursor: pointer; color: var(--text); font-weight: 500;">Cancelar</button>
+			<button onclick="alert('Acción confirmada');" style="padding: 10px 20px; background: var(--primary); border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: 500;">Confirmar</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+ <div id="notifications-center" style="position: fixed; top: 20px; right: 20px; max-width: 400px; z-index: 300;">
+	<div class="notification" style="background: #4caf50; color: white; padding: 16px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+		<div>
+			<h4 style="margin: 0 0 4px 0; font-weight: 600;">Éxito</h4>
+			<p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Operación completada exitosamente</p>
+		</div>
+		<button onclick="this.parentElement.remove();" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;">✕</button>
+	</div>
+	<div class="notification-warning" style="background: #ff9800; color: white; padding: 16px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+		<div>
+			<h4 style="margin: 0 0 4px 0; font-weight: 600;">Advertencia</h4>
+			<p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Revisa este mensaje importante</p>
+		</div>
+		<button onclick="this.parentElement.remove();" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;">✕</button>
+	</div>
+</div>

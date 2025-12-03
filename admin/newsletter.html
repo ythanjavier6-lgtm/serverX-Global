@@ -1,0 +1,371 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Newsletter - ServerX Admin</title>
+	<style>
+		:root {
+			--primary: #0b5fff;
+			--danger: #ff1744;
+			--success: #4caf50;
+			--warning: #ff9800;
+			--bg: #0a0e27;
+			--muted: #1a2332;
+			--border: #2a3f52;
+			--text: #e0e8ff;
+			--muted-text: #8896b8;
+		}
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+		.container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+		main { margin-left: 240px; min-height: 100vh; }
+		.header { background: var(--muted); border-bottom: 1px solid var(--border); padding: 20px 0; margin-bottom: 30px; }
+		.header h1 { font-size: 1.8rem; margin-bottom: 10px; }
+		.header p { color: var(--muted-text); font-size: 0.9rem; }
+		.section { background: var(--muted); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+		.section h2 { margin-bottom: 15px; color: var(--text); font-size: 1.3rem; }
+		.form-group { margin-bottom: 15px; }
+		label { display: block; margin-bottom: 5px; color: var(--text); font-weight: 500; }
+		input, textarea, select { width: 100%; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; }
+		input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11, 95, 255, 0.1); }
+		.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+		button { padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+		button:hover { background: #0949d6; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(11, 95, 255, 0.3); }
+		.btn-secondary { background: var(--muted); color: var(--text); border: 1px solid var(--border); }
+		.btn-secondary:hover { background: var(--border); }
+		.btn-danger { background: var(--danger); }
+		.btn-danger:hover { background: #ff5577; }
+		.table-container { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+		table { width: 100%; border-collapse: collapse; background: var(--bg); }
+		table th { padding: 12px 16px; text-align: left; font-weight: 600; background: var(--muted); border-bottom: 1px solid var(--border); }
+		table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+		table tr:hover { background: rgba(11, 95, 255, 0.05); }
+		.badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+		.badge-active { background: #e8f5e9; color: #2e7d32; }
+		.badge-pending { background: #fff3e0; color: #e65100; }
+		.badge-draft { background: #f3e5f5; color: #6a1b9a; }
+		.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+		.stat-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px; text-align: center; }
+		.stat-value { font-size: 1.8rem; font-weight: bold; color: var(--primary); }
+		.stat-label { font-size: 0.9rem; color: var(--muted-text); margin-top: 5px; }
+		.modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 200; align-items: center; justify-content: center; }
+		.modal-content { background: var(--muted); border-radius: 12px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
+		.modal-content h3 { margin-bottom: 20px; }
+		.modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+		.action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+		@media (max-width: 768px) {
+			main { margin-left: 0; }
+			.form-row { grid-template-columns: 1fr; }
+		}
+	</style>
+</head>
+<body>
+	<div id="sidebar"></div>
+	
+	<main>
+		<div class="header">
+			<div class="container">
+				<div style="display: flex; justify-content: space-between; align-items: center;">
+					<div>
+						<h1>📧 Newsletter</h1>
+						<p>Gestiona campañas y suscriptores de newsletter</p>
+					</div>
+					<button onclick="logout()" style="background: var(--danger); padding: 8px 16px; font-size: 0.9rem;">Salir</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<!-- Estadísticas -->
+			<div class="stats">
+				<div class="stat-card">
+					<div class="stat-value">12,450</div>
+					<div class="stat-label">Suscriptores</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-value">8</div>
+					<div class="stat-label">Campañas Activas</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-value">34%</div>
+					<div class="stat-label">Tasa de Apertura</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-value">5.2%</div>
+					<div class="stat-label">Tasa de Clics</div>
+				</div>
+			</div>
+
+			<!-- Crear Nueva Campaña -->
+			<div class="section">
+				<h2>Nueva Campaña</h2>
+				<form onsubmit="handleCreateCampaign(event)">
+					<div class="form-row">
+						<div class="form-group">
+							<label>Nombre de Campaña</label>
+							<input type="text" placeholder="Ej: Black Friday 2024" required>
+						</div>
+						<div class="form-group">
+							<label>Asunto del Email</label>
+							<input type="text" placeholder="Ej: ¡Aprovecha nuestras ofertas!" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Contenido HTML</label>
+						<textarea rows="8" placeholder="Ingresa el contenido HTML del email" required></textarea>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label>Fecha de Envío</label>
+							<input type="datetime-local" required>
+						</div>
+						<div class="form-group">
+							<label>Segmento de Audiencia</label>
+							<select required>
+								<option value="">Selecciona un segmento</option>
+								<option value="all">Todos los suscriptores</option>
+								<option value="premium">Premium Users</option>
+								<option value="trial">Trial Users</option>
+								<option value="inactive">Usuarios Inactivos</option>
+							</select>
+						</div>
+					</div>
+					<div class="action-buttons">
+						<button type="button" class="btn-secondary" onclick="document.querySelector('.section form').reset();">Limpiar</button>
+						<button type="submit">Crear Campaña</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- Campañas Existentes -->
+			<div class="section">
+				<h2>Campañas Activas</h2>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Asunto</th>
+								<th>Audiencia</th>
+								<th>Estado</th>
+								<th>Abiertos</th>
+								<th>Clics</th>
+								<th>Fecha</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>Oferta Especial</strong></td>
+								<td>20% en todos los planes</td>
+								<td>5,234 contactos</td>
+								<td><span class="badge badge-active">Enviado</span></td>
+								<td>1,789 (34.2%)</td>
+								<td>156 (9.2%)</td>
+								<td>15/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver estadísticas')" style="padding: 6px 12px; font-size: 0.8rem;">Ver</button>
+									<button onclick="alert('Editar campaña')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--warning);">Editar</button>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Bienvenida</strong></td>
+								<td>Bienvenido a ServerX</td>
+								<td>Automático</td>
+								<td><span class="badge badge-active">Activo</span></td>
+								<td>4,156 (92%)</td>
+								<td>342 (8.2%)</td>
+								<td>10/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver estadísticas')" style="padding: 6px 12px; font-size: 0.8rem;">Ver</button>
+									<button onclick="alert('Editar campaña')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--warning);">Editar</button>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Actualización</strong></td>
+								<td>Nuevas características disponibles</td>
+								<td>8,900 contactos</td>
+								<td><span class="badge badge-pending">Programado</span></td>
+								<td>-</td>
+								<td>-</td>
+								<td>20/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver estadísticas')" style="padding: 6px 12px; font-size: 0.8rem;">Ver</button>
+									<button onclick="alert('Editar campaña')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--warning);">Editar</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Gestión de Suscriptores -->
+			<div class="section">
+				<h2>Suscriptores</h2>
+				<div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+					<input type="text" placeholder="Buscar suscriptor..." style="flex: 1; min-width: 250px;">
+					<select style="width: 200px;">
+						<option value="">Todos los estados</option>
+						<option value="active">Activos</option>
+						<option value="inactive">Inactivos</option>
+						<option value="bounced">Rechazados</option>
+					</select>
+					<button onclick="alert('Importar suscriptores')">Importar CSV</button>
+					<button class="btn-secondary" onclick="alert('Exportar suscriptores')">Exportar CSV</button>
+				</div>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>Email</th>
+								<th>Nombre</th>
+								<th>Segmento</th>
+								<th>Estado</th>
+								<th>Fecha Suscripción</th>
+								<th>Último Abierto</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>user1@example.com</td>
+								<td>Juan García</td>
+								<td>Premium</td>
+								<td><span class="badge badge-active">Activo</span></td>
+								<td>05/01/2024</td>
+								<td>15/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver detalles')" style="padding: 6px 12px; font-size: 0.8rem;">Detalles</button>
+									<button class="btn-danger" onclick="alert('Remover')" style="padding: 6px 12px; font-size: 0.8rem;">Remover</button>
+								</td>
+							</tr>
+							<tr>
+								<td>user2@example.com</td>
+								<td>María López</td>
+								<td>Trial</td>
+								<td><span class="badge badge-active">Activo</span></td>
+								<td>10/01/2024</td>
+								<td>14/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver detalles')" style="padding: 6px 12px; font-size: 0.8rem;">Detalles</button>
+									<button class="btn-danger" onclick="alert('Remover')" style="padding: 6px 12px; font-size: 0.8rem;">Remover</button>
+								</td>
+							</tr>
+							<tr>
+								<td>user3@example.com</td>
+								<td>Carlos Rodríguez</td>
+								<td>Premium</td>
+								<td><span class="badge badge-pending">Inactivo</span></td>
+								<td>01/01/2024</td>
+								<td>08/01/2024</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Ver detalles')" style="padding: 6px 12px; font-size: 0.8rem;">Detalles</button>
+									<button class="btn-danger" onclick="alert('Remover')" style="padding: 6px 12px; font-size: 0.8rem;">Remover</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Plantillas de Email -->
+			<div class="section">
+				<h2>Plantillas de Email</h2>
+				<div style="margin-bottom: 15px;">
+					<button onclick="showModal('template-modal')">+ Nueva Plantilla</button>
+				</div>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Descripción</th>
+								<th>Estado</th>
+								<th>Creado</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>Bienvenida</strong></td>
+								<td>Email de bienvenida para nuevos usuarios</td>
+								<td><span class="badge badge-active">Activo</span></td>
+								<td>01/12/2023</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Editar plantilla')" style="padding: 6px 12px; font-size: 0.8rem;">Editar</button>
+									<button onclick="alert('Usar plantilla')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--success);">Usar</button>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Confirmación</strong></td>
+								<td>Email de confirmación de suscripción</td>
+								<td><span class="badge badge-active">Activo</span></td>
+								<td>15/11/2023</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Editar plantilla')" style="padding: 6px 12px; font-size: 0.8rem;">Editar</button>
+									<button onclick="alert('Usar plantilla')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--success);">Usar</button>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Recuperación</strong></td>
+								<td>Email para recuperar suscriptores inactivos</td>
+								<td><span class="badge badge-draft">Borrador</span></td>
+								<td>20/10/2023</td>
+								<td style="display: flex; gap: 8px;">
+									<button onclick="alert('Editar plantilla')" style="padding: 6px 12px; font-size: 0.8rem;">Editar</button>
+									<button onclick="alert('Usar plantilla')" style="padding: 6px 12px; font-size: 0.8rem; background: var(--success);">Usar</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<div id="template-modal" class="modal">
+		<div class="modal-content">
+			<h3>Nueva Plantilla</h3>
+			<div class="form-group">
+				<label>Nombre de Plantilla</label>
+				<input type="text" placeholder="Ej: Plantilla Promocional">
+			</div>
+			<div class="form-group">
+				<label>Contenido HTML</label>
+				<textarea rows="10" placeholder="Ingresa el contenido HTML"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button class="btn-secondary" onclick="closeModal('template-modal')">Cancelar</button>
+				<button onclick="alert('Plantilla creada'); closeModal('template-modal')">Guardar Plantilla</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="../frontend/js/supabase/supabase-client.js"></script>
+	<script src="../frontend/js/core/auth-guard.js"></script>
+	<script>
+		function showModal(id) {
+			document.getElementById(id).style.display = 'flex';
+		}
+		function closeModal(id) {
+			document.getElementById(id).style.display = 'none';
+		}
+		function handleCreateCampaign(e) {
+			e.preventDefault();
+			alert('Campaña creada exitosamente');
+			e.target.reset();
+		}
+		function logout() {
+			if (confirm('¿Deseas cerrar sesión?')) {
+				localStorage.clear();
+				window.location.href = '/login.html';
+			}
+		}
+		// Cargar sidebar
+		fetch('../components/sidebar.html').then(r => r.text()).then(html => {
+			document.getElementById('sidebar').innerHTML = html;
+		});
+	</script>
+</body>
+</html>

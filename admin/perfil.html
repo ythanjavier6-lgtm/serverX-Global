@@ -1,0 +1,115 @@
+ <!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Mi Perfil — ServerX Admin</title>
+		<link rel="stylesheet" href="/frontend/css/site.css">
+		<style>
+			.admin-layout { display: flex; gap: 20px; }
+			.sidebar { width: 250px; background: var(--card); border-radius: 8px; padding: 20px; position: sticky; top: 20px; height: fit-content; }
+			.sidebar a { display: block; padding: 12px; margin-bottom: 8px; border-radius: 6px; color: var(--text); text-decoration: none; transition: background 0.3s; }
+			.sidebar a:hover, .sidebar a.active { background: var(--accent); color: white; }
+			.main-content { flex: 1; }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="brand"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg><span>ServerX Admin</span></div>
+				<nav class="nav"><a href="/index.html">Sitio</a><button id="logout-btn" style="background: none; border: none; color: var(--muted); cursor: pointer;">Cerrar sesión</button></nav>
+			</header>
+
+			<main style="padding-top: 20px;">
+				<div class="admin-layout">
+					<aside class="sidebar">
+						<h3 style="margin-top: 0;">Menú</h3>
+						<a href="/admin/dashboard.html">Dashboard</a>
+						<a href="/admin/perfil.html" class="active">Mi Perfil</a>
+						<a href="/admin/usuarios.html">Usuarios</a>
+						<a href="/admin/productos.html">Productos</a>
+						<a href="/admin/ordenes.html">Órdenes</a>
+						<a href="/admin/pagos.html">Pagos</a>
+						<a href="/admin/tickets.html">Tickets</a>
+						<a href="/admin/mensajes.html">Mensajes</a>
+						<a href="/admin/reportes.html">Reportes</a>
+						<a href="/admin/analitica.html">Analítica</a>
+						<a href="/admin/logs.html">Logs</a>
+						<a href="/admin/roles.html">Roles</a>
+						<a href="/admin/seguridad.html">Seguridad</a>
+						<a href="/admin/configuracion.html">Configuración</a>
+						<a href="/admin/sistema.html">Sistema</a>
+						<a href="/admin/soporte.html">Soporte</a>
+						<a href="/admin/newsletter.html">Newsletter</a>
+					</aside>
+
+					<section class="main-content">
+						<h1>Mi Perfil</h1>
+						<div class="card">
+							<h2>Información Personal</h2>
+							<form id="profile-form">
+								<div class="form-field"><label for="email">Email</label><input class="input" id="email" type="email" disabled></div>
+								<div class="form-field"><label for="full-name">Nombre Completo</label><input class="input" id="full-name" type="text"></div>
+								<div class="form-field"><label for="role">Rol</label><input class="input" id="role" type="text" disabled></div>
+								<button type="submit" class="cta">Guardar Cambios</button>
+							</form>
+						</div>
+
+						<div class="card" style="margin-top: 20px;">
+							<h2>Cambiar Contraseña</h2>
+							<form id="password-form">
+								<div class="form-field"><label for="current-password">Contraseña Actual</label><input class="input" id="current-password" type="password"></div>
+								<div class="form-field"><label for="new-password">Nueva Contraseña</label><input class="input" id="new-password" type="password"></div>
+								<div class="form-field"><label for="confirm-password">Confirmar Contraseña</label><input class="input" id="confirm-password" type="password"></div>
+								<button type="submit" class="cta">Actualizar Contraseña</button>
+							</form>
+						</div>
+					</section>
+				</div>
+			</main>
+
+			<footer style="margin-top: 40px;"><div style="color: var(--muted); font-size: 0.9rem;">© 2025 ServerX. Todos los derechos reservados.</div></footer>
+		</div>
+
+		<script src="/supabase/config/client-config.js"></script>
+		<script type="module" src="/frontend/js/supabase-client.js"></script>
+		<script type="module">
+			import { getSupabase } from '/frontend/js/supabase-client.js';
+
+			const supabase = await getSupabase();
+			if (!supabase) { window.location.href = '/login.html'; }
+
+			document.getElementById('logout-btn')?.addEventListener('click', async () => {
+				await supabase.auth.signOut();
+				window.location.href = '/index.html';
+			});
+
+			const { data: { user } } = await supabase.auth.getUser();
+			if (!user) { window.location.href = '/login.html'; }
+
+			const { data: userData } = await supabase.from('users').select('*').eq('id', user.id).single();
+			
+			document.getElementById('email').value = user.email || '';
+			document.getElementById('full-name').value = userData?.full_name || '';
+			document.getElementById('role').value = userData?.role || 'user';
+
+			document.getElementById('profile-form')?.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const { error } = await supabase.from('users').update({ full_name: document.getElementById('full-name').value }).eq('id', user.id);
+				alert(error ? 'Error: ' + error.message : 'Perfil actualizado');
+			});
+
+			document.getElementById('password-form')?.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				if (document.getElementById('new-password').value !== document.getElementById('confirm-password').value) {
+					alert('Las contraseñas no coinciden');
+					return;
+				}
+				const { error } = await supabase.auth.updateUser({ password: document.getElementById('new-password').value });
+				alert(error ? 'Error: ' + error.message : 'Contraseña actualizada');
+				document.getElementById('password-form').reset();
+			});
+		</script>
+		<script type="module" src="/frontend/js/site.js"></script>
+	</body>
+</html>

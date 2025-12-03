@@ -1,0 +1,78 @@
+ <!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Productos — ServerX Admin</title>
+		<link rel="stylesheet" href="/frontend/css/site.css">
+		<style>.admin-layout { display: flex; gap: 20px; }.sidebar { width: 250px; background: var(--card); border-radius: 8px; padding: 20px; position: sticky; top: 20px; height: fit-content; }.sidebar a { display: block; padding: 12px; margin-bottom: 8px; border-radius: 6px; color: var(--text); text-decoration: none; }.sidebar a.active { background: var(--accent); color: white; }.main-content { flex: 1; }</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="brand"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg><span>ServerX Admin</span></div>
+				<nav class="nav"><a href="/index.html">Sitio</a><button id="logout-btn" style="background: none; border: none; color: var(--muted); cursor: pointer;">Cerrar sesión</button></nav>
+			</header>
+
+			<main style="padding-top: 20px;">
+				<div class="admin-layout">
+					<aside class="sidebar">
+						<h3 style="margin-top: 0;">Menú</h3>
+						<a href="/admin/dashboard.html">Dashboard</a><a href="/admin/perfil.html">Mi Perfil</a><a href="/admin/usuarios.html">Usuarios</a>
+						<a href="/admin/productos.html" class="active">Productos</a><a href="/admin/ordenes.html">Órdenes</a><a href="/admin/pagos.html">Pagos</a>
+						<a href="/admin/tickets.html">Tickets</a><a href="/admin/mensajes.html">Mensajes</a><a href="/admin/reportes.html">Reportes</a>
+						<a href="/admin/analitica.html">Analítica</a><a href="/admin/logs.html">Logs</a><a href="/admin/roles.html">Roles</a>
+						<a href="/admin/seguridad.html">Seguridad</a><a href="/admin/configuracion.html">Configuración</a><a href="/admin/sistema.html">Sistema</a>
+						<a href="/admin/soporte.html">Soporte</a><a href="/admin/newsletter.html">Newsletter</a>
+					</aside>
+
+					<section class="main-content">
+						<h1>Gestión de Productos</h1>
+						<div class="card">
+							<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+								<h2 style="margin: 0;">Productos</h2>
+								<button id="add-product-btn" class="cta">Nuevo Producto</button>
+							</div>
+							<table style="width: 100%; border-collapse: collapse;">
+								<thead>
+									<tr style="border-bottom: 1px solid var(--muted);">
+										<th style="text-align: left; padding: 10px;">Nombre</th>
+										<th style="text-align: left; padding: 10px;">Precio</th>
+										<th style="text-align: left; padding: 10px;">CPU</th>
+										<th style="text-align: left; padding: 10px;">RAM</th>
+										<th style="text-align: left; padding: 10px;">Status</th>
+										<th style="text-align: left; padding: 10px;">Acciones</th>
+									</tr>
+								</thead>
+								<tbody id="products-tbody">
+									<tr><td colspan="6" style="text-align: center; padding: 20px; color: var(--muted);">Cargando productos...</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+				</div>
+			</main>
+
+			<footer style="margin-top: 40px;"><div style="color: var(--muted); font-size: 0.9rem;">© 2025 ServerX.</div></footer>
+		</div>
+
+		<script src="/supabase/config/client-config.js"></script>
+		<script type="module" src="/frontend/js/supabase-client.js"></script>
+		<script type="module">
+			import { getSupabase } from '/frontend/js/supabase-client.js';
+			const supabase = await getSupabase();
+			if (!supabase) { window.location.href = '/login.html'; }
+			document.getElementById('logout-btn')?.addEventListener('click', async () => {
+				await supabase.auth.signOut();
+				window.location.href = '/index.html';
+			});
+
+			async function loadProducts() {
+				const { data: products } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+				const tbody = document.getElementById('products-tbody');
+				tbody.innerHTML = products?.map(p => `<tr style="border-bottom: 1px solid var(--muted);"><td style="padding: 10px;">${p.name}</td><td style="padding: 10px;">$${p.price}</td><td style="padding: 10px;">${p.cpu}</td><td style="padding: 10px;">${p.ram}</td><td style="padding: 10px;"><span style="background: var(--accent); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">${p.status}</span></td><td style="padding: 10px;"><button onclick="alert('Editar: ${p.id}')" style="background: none; border: 1px solid var(--accent); color: var(--accent); padding: 4px 8px; border-radius: 4px; cursor: pointer;">Editar</button></td></tr>`).join('') || '<tr><td colspan="6" style="text-align: center; padding: 20px;">No hay productos</td></tr>';
+			}
+			loadProducts();
+		</script>
+		<script type="module" src="/frontend/js/site.js"></script>
+	</body>
+</html>
