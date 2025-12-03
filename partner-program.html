@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Programa de Socios — ServerX | Partner Program</title>
+    <meta name="description" content="Detalles y beneficios de unirse al Programa de Socios de ServerX para consultores, integradores de sistemas y revendedores." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización, asumiendo variables de color */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --surface: #ecf0f1;
+            --border: #bdc3c7;
+            --gold: #f39c12;
+            --benefit-color: #2ecc71; /* Verde para los beneficios */
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; align-items: flex-start; }
+        .benefit-card { padding: 20px; border-radius: 12px; border: 1px solid var(--border); background: white; }
+        .benefit-card h4 { margin-top: 0; color: var(--benefit-color); font-size: 1.2rem; }
+        .partner-level { padding: 10px 15px; border-radius: 8px; text-align: center; }
+        .level-title { font-size: 1.5rem; font-weight: bold; color: var(--primary); margin-top: 0; }
+        .level-desc { color: var(--muted); font-size: 0.95rem; min-height: 40px; }
+        .level-bronze { background: #f8e5d0; } /* Simulación de color para nivel */
+        .level-gold { background: #fff5e0; border: 2px solid var(--gold); }
+        .cta-footer { background: var(--accent); color: white; padding: 50px; border-radius: 15px; margin-top: 60px; text-align: center; }
+        .cta-footer a { background: var(--gold); color: var(--primary); padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 25px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="about.html" style="text-decoration: none; color: var(--primary);">Acerca</a>
+          <a href="features.html" style="text-decoration: none; color: var(--primary);">Características</a>
+          <a href="contact.html" style="text-decoration: none; color: var(--primary);">Contacto</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section" style="text-align: center;">
+          <h1 style="font-size: 2.5rem; color: var(--primary);"><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i> Programa de Socios ServerX</h1>
+          <p style="color:var(--muted); font-size: 1.2rem; max-width: 800px; margin: 15px auto;">Trabajamos con los mejores integradores, consultores y revendedores para escalar el valor de ServerX a nivel global. Únete a nuestra red y maximiza tu rentabilidad.</p>
+        </section>
+
+        <section style="margin-top: 40px;" aria-labelledby="beneficios">
+            <h2 id="beneficios" style="font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Beneficios Exclusivos para Socios</h2>
+            
+            <div class="grid-3">
+                
+                <div class="benefit-card">
+                    <h4><i class="fas fa-percent" style="margin-right: 8px;"></i> Comisiones Competitivas</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Obtén comisiones recurrentes (hasta 20%) sobre el consumo de infraestructura de tus clientes referidos, asegurando un flujo de ingresos constante.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> Capacitación y Certificación Gratuita</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Accede a *workshops* técnicos, material de entrenamiento y exámenes de certificación gratuitos para tu equipo.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4><i class="fas fa-headset" style="margin-right: 8px;"></i> Soporte Técnico Prioritario L3</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Canal de soporte dedicado (Nivel 3) para resolver problemas críticos de tus clientes con la máxima prioridad.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h4><i class="fas fa-rocket" style="margin-right: 8px;"></i> Acceso a Canales Beta</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Sé el primero en probar y ofrecer nuevas *features* y servicios antes de su lanzamiento oficial al mercado.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h4><i class="fas fa-users-cog" style="margin-right: 8px;"></i> Herramientas de Gestión Centralizada</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Panel de socios dedicado para gestionar múltiples cuentas de clientes, monitorear el consumo y administrar licencias.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h4><i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Co-Marketing y Leads</h4>
+                    <p style="color:var(--muted); font-size: 0.95rem;">Participa en eventos conjuntos, *webinars* y recibe *leads* cualificados directamente de ServerX en tu región.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="margin-top: 60px;" aria-labelledby="niveles">
+            <h2 id="niveles" style="font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Elige tu Nivel de Asociación</h2>
+            
+            <div class="grid-3">
+                
+                <div class="partner-level level-bronze">
+                    <h3 class="level-title">Asociado Registrado</h3>
+                    <p class="level-desc">Para consultores independientes y revendedores iniciales.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; font-size: 0.9rem; color: var(--primary);">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> 10% de Comisión por Referencia (No Recurrente)</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Acceso a Portal de Socios</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Certificación Técnica Básica</li>
+                    </ul>
+                </div>
+
+                <div class="partner-level level-bronze" style="background: #e0e6f8;">
+                    <h3 class="level-title">Socio Certificado</h3>
+                    <p class="level-desc">Para empresas de TI con experiencia demostrada en migración y gestión.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; font-size: 0.9rem; color: var(--primary);">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> 15% de Comisión Recurrente (1er año)</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Soporte Prioritario N2</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Descuentos en Infraestructura de Prueba</li>
+                    </ul>
+                </div>
+
+                <div class="partner-level level-gold">
+                    <h3 class="level-title" style="color: var(--gold);">Socio Premier (Gold)</h3>
+                    <p class="level-desc">Para integradores estratégicos que impulsan grandes volúmenes y proyectos complejos.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; font-size: 0.9rem; color: var(--primary);">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> **20% de Comisión Recurrente** (Permanente)</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Soporte Técnico **24/7 N3 Dedicado**</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Leads Cualificados Exclusivos</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color: var(--benefit-color); margin-right: 5px;"></i> Revisión Anual de Roadmap</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </section>
+        
+        <section class="cta-footer" aria-labelledby="apply-now">
+            <h2 id="apply-now" style="margin-top: 0; color: white; font-size: 2.2rem;">¡Comienza a crecer con ServerX hoy mismo!</h2>
+            <p style="color: white;">Completa nuestra solicitud y un especialista en alianzas se pondrá en contacto contigo en las próximas 48 horas.</p>
+            <a href="partner-application.html"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Aplicar al Programa de Socios</a>
+        </section>
+        
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

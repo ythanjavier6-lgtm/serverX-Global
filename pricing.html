@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Precios — ServerX</title>
+        <meta name="description" content="Planes y precios de ServerX. Escala según tus necesidades." />
+        <link rel="stylesheet" href="/frontend/css/site.css">
+        <style>
+            /* Estilos base para el contenedor principal de los productos */
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajustado minmax para pantallas más pequeñas */
+                gap: 30px; /* Incrementamos el espacio entre tarjetas */
+                margin-top: 30px;
+                margin-bottom: 50px;
+            }
+
+            /* Estilos para cada tarjeta de producto */
+            .product-card {
+                background-color: #ffffff; /* Fondo blanco para las tarjetas */
+                border: 1px solid #e0e0e0;
+                border-radius: 12px; /* Bordes más redondeados */
+                padding: 25px; /* Más padding interno */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra sutil para profundidad */
+                transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave al pasar el ratón */
+            }
+
+            .product-card:hover {
+                transform: translateY(-8px); /* Efecto "levantar" al pasar el ratón */
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el ratón */
+            }
+
+            .product-card h3 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                color: #333; /* Color de texto más oscuro para los títulos */
+                font-size: 1.6rem; /* Títulos más grandes */
+                letter-spacing: -0.5px;
+            }
+
+            .product-card p {
+                color: #666; /* Texto descriptivo más suave */
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+
+            .product-card .price {
+                font-size: 2.2rem; /* Precio más grande y llamativo */
+                font-weight: 700; /* Negrita más marcada */
+                color: var(--cta, #0b5fff); /* Usar --cta o un color por defecto azul vibrante */
+                margin-top: 15px;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: baseline;
+                gap: 5px;
+            }
+
+            .product-card .price .billing-cycle { /* Para la frecuencia de facturación */
+                font-size: 1rem;
+                font-weight: normal;
+                color: #888;
+            }
+
+            .product-card .specs {
+                font-size: 0.95rem;
+                color: #555; /* Color de las especificaciones */
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+
+            .product-card .features-list {
+                font-size: 0.95rem;
+                color: #444; /* Color de las características */
+                margin-bottom: 25px;
+            }
+
+            .product-card .features-list ul {
+                list-style: none;
+                padding: 0;
+                margin: 10px 0 0 0;
+            }
+
+            .product-card .features-list li {
+                margin-bottom: 8px; /* Más espacio entre ítems de la lista */
+                display: flex;
+                align-items: center;
+                line-height: 1.4;
+            }
+
+            .product-card .features-list li::before {
+                content: "✔️"; /* Nuevo ícono de checkmark más moderno */
+                color: var(--cta, #0b5fff); /* Color del checkmark */
+                margin-right: 10px;
+                font-size: 1.1rem;
+                flex-shrink: 0; /* Evita que el checkmark se encoja */
+            }
+
+            .product-card .cta {
+                text-align: center;
+                margin-top: auto; /* Empuja el botón hacia abajo */
+            }
+
+            .product-card .cta .cta-button { /* Estilo para el botón dentro de la tarjeta */
+                display: block;
+                width: 100%;
+                padding: 12px 20px;
+                background-color: var(--cta, #0b5fff); /* Color de fondo del botón */
+                color: #fff; /* Color de texto del botón */
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3); /* Sombra para el botón */
+            }
+
+            .product-card .cta .cta-button:hover {
+                background-color: var(--cta-hover, #004acb); /* Color al pasar el ratón */
+                transform: translateY(-2px); /* Efecto sutil al pasar el ratón */
+            }
+            
+            /* Aplicar los estilos del cta-button a los a.cta existentes */
+            .product-card .cta a.cta {
+                display: block;
+                width: 100%;
+                padding: 12px 20px;
+                background-color: var(--cta, #0b5fff);
+                color: #fff;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3);
+            }
+
+            .product-card .cta a.cta:hover {
+                background-color: var(--cta-hover, #004acb);
+                transform: translateY(-2px);
+            }
+
+            .section-title {
+                margin-top: 50px; /* Más espacio antes de los títulos de sección */
+                margin-bottom: 25px;
+                font-size: 2.2rem;
+                color: #222;
+                border-bottom: 2px solid var(--cta, #0b5fff); /* Línea debajo del título de sección */
+                padding-bottom: 10px;
+                display: inline-block; /* Para que la línea se ajuste al texto */
+                letter-spacing: -0.8px;
+            }
+
+            .discount-tag {
+                background-color: #ff4757; /* Rojo para descuentos */
+                color: #fff;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: bold;
+                margin-left: 10px;
+                vertical-align: middle;
+                white-space: nowrap; /* Evita que se rompa el texto */
+            }
+        </style>
+    </head>
+  <body>
+    <div class="container">
+        <header>
+            <div class="brand" aria-label="ServerX">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+                <span>ServerX</span>
+            </div>
+            <nav class="nav" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Acerca</a>
+                <a href="features.html">Características</a>
+                <a href="contact.html">Contacto</a>
+                <a class="cta" href="register.html">Comenzar</a>
+            </nav>
+        </header>
+
+        <main>
+            <section style="padding-top:18px">
+                <h1>Precios</h1>
+                <p style="color:var(--muted)">Planes transparentes para startups y empresas. Cambia o cancela en cualquier momento.</p>
+                
+                <h2 class="section-title">Planes de Suscripción </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>Starter</h3>
+                        <p style="color:var(--muted)">Para proyectos pequeños. Incluye 1 servidor, métricas básicas.</p>
+                        <div class="price">$3 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=starter" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Básico</h3>
+                        <p style="color:var(--muted)">Ideal para equipos pequeños. 5 servidores, acceso a API, historial de 7 días.</p>
+                        <div class="price">$10 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=basic" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Pro</h3>
+                        <p style="color:var(--muted)">Soporte 24/7, múltiples servidores, facturación avanzada.</p>
+                        <div class="price">$80 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=pro" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Business <span class="discount-tag">Popular</span></h3>
+                        <p style="color:var(--muted)">Todo incluido para empresas en crecimiento. 50 servidores, monitoreo avanzado.</p>
+                        <div class="price">$199 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=business" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Scale</h3>
+                        <p style="color:var(--muted)">Recursos ilimitados y funciones de alta disponibilidad (HA).</p>
+                        <div class="price">$499 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=scale" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Personalizado</h3>
+                        <p style="color:var(--muted)">Diseñado a medida para infraestructuras complejas y alto tráfico.</p>
+                        <div class="price">Solicitar <span class="billing-cycle">Precio</span></div>
+                        <div class="cta"><a href="contact.html?plan=custom" class="cta">Contactar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Enterprise</h3>
+                        <p style="color:var(--muted)">SLA personalizado, integración y atención dedicada.</p>
+                        <div class="price">Contacto</div>
+                        <div class="cta"><a href="contact.html?plan=enterprise" class="cta">Solicitar demo</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Developer</h3>
+                        <p style="color:var(--muted)">Entornos de prueba y desarrollo. Acceso a sandboxes y preproducción.</p>
+                        <div class="price">$9 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=developer" class="cta">Comenzar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Premium Support</h3>
+                        <p style="color:var(--muted)">Todo el plan Business más soporte telefónico 24/7 y agente dedicado.</p>
+                        <div class="price">$399 <span class="billing-cycle">/mes</span></div>
+                        <div class="cta"><a href="register.html?plan=premium-support" class="cta">Comenzar</a></div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">VPS (Servidores Virtuales Privados) </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>VPS Básico</h3>
+                        <p style="color:var(--muted)">Servidor virtual privado ideal para proyectos pequeños</p>
+                        <div class="price">$15.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            CPU: 2 Cores<br> 
+						    RAM: 4 GB <br>
+							Almacenamiento:80 GB SSD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>SSD Storage</li>
+                                <li>99.9% Uptime</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-BAS-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS Avanzado <span class="discount-tag">10% OFF</span></h3>
+                        <p style="color:var(--muted)">Servidor con mayor capacidad para aplicaciones exigentes</p>
+                        <div class="price">$35.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            CPU:4 Cores <br>
+					    	RAM:8 GB <br>
+							Almacenamiento:160 GB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>NVMe Storage</li>
+                                <li>99.99% Uptime</li>
+                                <li>Priority Support</li>
+                                <li>Free Backups</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-ADV-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS Premium <span class="discount-tag">5% OFF</span></h3>
+                        <p style="color:var(--muted)">Servidor de alto rendimiento con recursos garantizados</p>
+                        <div class="price">$75.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            CPU: 6 Cores<br>
+							RAM:16 GB<br>
+							Almacenamiento:320 GB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>NVMe Storage</li>
+                                <li>Dedicated CPU</li>
+                                <li>99.99% SLA</li>
+                                <li>Free Migration</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-PRE-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS Ultra</h3>
+                        <p style="color:var(--muted)">Máximo poder y baja latencia para servicios críticos.</p>
+                        <div class="price">$149.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            CPU:8 Cores <br>|RAM:32 GB | **Almacenamiento:** 640 GB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>10Gbps Network</li>
+                                <li>DDoS Layer 7 Protection</li>
+                                <li>Recursos 100% Dedicados</li>
+                                <li>Soporte 24/7 Nivel 3</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-ULT-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS GPU</h3>
+                        <p style="color:var(--muted)">Optimizado para IA, Machine Learning y procesamiento intensivo.</p>
+                        <div class="price">$299.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 10 Cores | **RAM:** 64 GB | **GPU:** NVIDIA A10
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>GPU Dedicada</li>
+                                <li>Acceso SSH/RDP</li>
+                                <li>Alto rendimiento en cálculo</li>
+                                <li>Monitoreo de GPU</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-GPU-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS Micro</h3>
+                        <p style="color:var(--muted)">El plan más económico para despliegues y pruebas ligeras.</p>
+                        <div class="price">$7.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 1 Core | **RAM:** 2 GB | **Almacenamiento:** 40 GB SSD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Tráfico 1 TB</li>
+                                <li>IP Dedicada</li>
+                                <li>Acceso Root</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-MIC-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPS Windows</h3>
+                        <p style="color:var(--muted)">Servidor virtual con licencia Windows Server incluida.</p>
+                        <div class="price">$45.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 4 Cores | **RAM:** 8 GB | **SO:** Windows Server 2022
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Licencia Windows incluida</li>
+                                <li>Acceso RDP</li>
+                                <li>MS SQL Server opcional</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=VPS-WIN-001" class="cta">Comprar</a></div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Servidores Dedicados </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>Dedicado Pro</h3>
+                        <p style="color:var(--muted)">Servidor físico completo con recursos dedicados</p>
+                        <div class="price">$120.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 8 Cores | **RAM:** 32 GB | **Almacenamiento:** 1 TB HDD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Dedicated Resources</li>
+                                <li>Root Access</li>
+                                <li>Custom OS</li>
+                                <li>DDoS Protection</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-PRO-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado EPYC</h3>
+                        <p style="color:var(--muted)">Procesadores AMD EPYC para virtualización y bases de datos.</p>
+                        <div class="price">$199.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** AMD EPYC 16 Cores | **RAM:** 64 GB | **Almacenamiento:** 2 TB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Alto rendimiento multi-core</li>
+                                <li>Conexión 10 Gbps</li>
+                                <li>KVM sobre IP gratuito</li>
+                                <li>Uptime 99.999% SLA</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-EPYC-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado Storage</h3>
+                        <p style="color:var(--muted)">Optimizado para grandes volúmenes de datos y archivos.</p>
+                        <div class="price">$249.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** Intel Xeon | **RAM:** 128 GB | **Almacenamiento:** 48 TB HDD RAID-6
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>RAID de hardware</li>
+                                <li>48 TB de espacio</li>
+                                <li>Ideal para copias de seguridad</li>
+                                <li>Ancho de banda ilimitado</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-STO-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado High-Freq</h3>
+                        <p style="color:var(--muted)">Frecuencia turbo alta para gaming y trading.</p>
+                        <div class="price">$320.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** i9/Ryzen 9 (Alta Frecuencia) | **RAM:** 64 GB | **Almacenamiento:** 1 TB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Latencia ultra-baja</li>
+                                <li>Ideal para juegos y VoIP</li>
+                                <li>Acceso SSH/RDP</li>
+                                <li>Instalación gratuita</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-HF-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado Managed</h3>
+                        <p style="color:var(--muted)">Servidor dedicado con gestión y monitoreo total por nuestro equipo.</p>
+                        <div class="price">$450.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 12 Cores | **RAM:** 96 GB | **Almacenamiento:** 4 TB SSD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Gestión Completa</li>
+                                <li>Hardening de Seguridad</li>
+                                <li>Monitoreo Proactivo</li>
+                                <li>Parches y Actualizaciones</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-MAN-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado NVMe Pro</h3>
+                        <p style="color:var(--muted)">Máxima velocidad de lectura/escritura para bases de datos intensivas.</p>
+                        <div class="price">$155.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 10 Cores | **RAM:** 64 GB | **Almacenamiento:** 2 TB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>NVMe Puro</li>
+                                <li>Transferencia Ilimitada</li>
+                                <li>Reinicio Remoto</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-NVME-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Dedicado Core Enterprise</h3>
+                        <p style="color:var(--muted)">Para cargas de trabajo de misión crítica. Alto número de núcleos.</p>
+                        <div class="price">$650.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **CPU:** 32 Cores | **RAM:** 256 GB | **Almacenamiento:** 8 TB SSD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Doble CPU Xeon</li>
+                                <li>Soporte Nivel 4</li>
+                                <li>Hardware redundante</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=DED-CORE-001" class="cta">Comprar</a></div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Bots de WhatsApp </h2>
+                <div class="product-grid">
+                    
+                    <div class="product-card">
+                        <h3>Mini Chatbot</h3>
+                        <p style="color:var(--muted)">Ideal para pequeños negocios y respuesta automática básica.</p>
+                        <div class="price">$29 <span class="billing-cycle">/mes</span></div>
+                        <div class="specs">
+                            **Contactos Únicos:** 500 | **Mensajes:** Ilimitados
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Respuesta Automática (3 reglas)</li>
+                                <li>Integración con Google Sheets</li>
+                                <li>Plantillas prediseñadas (x5)</li>
+                                <li>Soporte Estándar</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=BOT-MINI-001" class="cta">Comenzar</a></div>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Business Flow <span class="discount-tag">Popular</span></h3>
+                        <p style="color:var(--muted)">Flujos conversacionales complejos para ventas y soporte.</p>
+                        <div class="price">$79 <span class="billing-cycle">/mes</span></div>
+                        <div class="specs">
+                            **Contactos Únicos:** 5,000 | **Mensajes:** Ilimitados
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Flujos Conversacionales (Ilimitados)</li>
+                                <li>Integración con CRM (Zapier)</li>
+                                <li>Soporte Multi-agente (5 usuarios)</li>
+                                <li>Métricas y Análisis</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=BOT-BUS-001" class="cta">Comenzar</a></div>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Enterprise AI</h3>
+                        <p style="color:var(--muted)">Solución avanzada con IA, validación de datos y escalabilidad total.</p>
+                        <div class="price">$199 <span class="billing-cycle">/mes</span></div>
+                        <div class="specs">
+                            **Contactos Únicos:** 20,000+ | **Mensajes:** Ilimitados
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Integración de Modelos de IA (GPT-4)</li>
+                                <li>Validación de Pago y Stock</li>
+                                <li>Conexión API Dedicada</li>
+                                <li>Soporte 24/7 Nivel Pro</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=BOT-ENT-001" class="cta">Comenzar</a></div>
+                    </div>
+                    
+                </div>
+                <h2 class="section-title">Hosting Compartido </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>Starter Hosting</h3>
+                        <p style="color:var(--muted)">Plan de hosting compartido para sitios web básicos</p>
+                        <div class="price">$5.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** 1 | **Emails:** 10 | **Almacenamiento:** 10 GB
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>cPanel Included</li>
+                                <li>Free SSL</li>
+                                <li>1-Click Install</li>
+                                <li>Email Accounts</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-SHA-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Business Hosting</h3>
+                        <p style="color:var(--muted)">Ideal para pequeñas empresas y tiendas online.</p>
+                        <div class="price">$12.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** 5 | **Emails:** 50 | **Almacenamiento:** 50 GB
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Recursos dedicados (Parcial)</li>
+                                <li>LiteSpeed Web Server</li>
+                                <li>DDoS Básico</li>
+                                <li>Migración gratuita</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-BUS-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Pro Hosting <span class="discount-tag">Mejor Opción</span></h3>
+                        <p style="color:var(--muted)">Hosting optimizado con alto rendimiento y caché avanzada.</p>
+                        <div class="price">$19.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** Ilimitados | **Emails:** Ilimitados | **Almacenamiento:** 100 GB NVMe
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>NVMe Storage</li>
+                                <li>Caché Varnish</li>
+                                <li>Copias de seguridad diarias</li>
+                                <li>Soporte Prioritario</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-PRO-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>WordPress Hosting</h3>
+                        <p style="color:var(--muted)">Plataforma de hosting especializada en WordPress.</p>
+                        <div class="price">$8.49 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** 1 | **Emails:** 20 | **Almacenamiento:** 25 GB SSD
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Instalación automática WP</li>
+                                <li>WP-CLI y Staging</li>
+                                <li>Actualizaciones gestionadas</li>
+                                <li>CDN Gratuito</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-WP-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Reseller Hosting</h3>
+                        <p style="color:var(--muted)">Crea y vende tus propios planes de hosting.</p>
+                        <div class="price">$29.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Cuentas CPanel:** 10 | **Espacio Total:** 150 GB | **Ancho de banda:** Ilimitado
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>WHM para Revendedores</li>
+                                <li>Marca Blanca</li>
+                                <li>Certificados SSL gratuitos</li>
+                                <li>Soporte técnico a tus clientes</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-RES-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Cloud Hosting</h3>
+                        <p style="color:var(--muted)">Hosting escalable con infraestructura de nube. Máxima disponibilidad.</p>
+                        <div class="price">$24.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** Ilimitados | **RAM:** 4 GB dedicada | **Escalabilidad:** Instantánea
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Recursos Dedicados</li>
+                                <li>Balanceo de carga</li>
+                                <li>IP Dedicada</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-CLD-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>E-commerce Hosting</h3>
+                        <p style="color:var(--muted)">Optimizado para tiendas online de alto tráfico (Magento, PrestaShop).</p>
+                        <div class="price">$39.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Sitios:** Ilimitados | **Tráfico:** Ilimitado | **Seguridad:** PCI DSS
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>IP/SSL Dedicados</li>
+                                <li>Soporte Magento/WooCommerce</li>
+                                <li>Firewall Web (WAF)</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=HST-ECO-001" class="cta">Comprar</a></div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Licencias </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>cPanel License</h3>
+                        <p style="color:var(--muted)">Licencia mensual de cPanel para gestión de hosting</p>
+                        <div class="price">$25.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            Cuentas soportadas: 50
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>WHM Access</li>
+                                <li>AutoSSL</li>
+                                <li>Softaculous</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=LIC-CPAN-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>LiteSpeed Web Server</h3>
+                        <p style="color:var(--muted)">Licencia para un servidor web más rápido y eficiente que Apache.</p>
+                        <div class="price">$15.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            Límite de RAM: 8 GB | Cuentas: Ilimitadas
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Mejor rendimiento de PHP</li>
+                                <li>Soporte HTTP/3</li>
+                                <li>Plugin de Caché WP</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=LIC-LITES-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>CloudLinux OS</h3>
+                        <p style="color:var(--muted)">Sistema operativo optimizado para hosting compartido con aislamiento.</p>
+                        <div class="price">$14.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            Servidor: 1 | Ilimitados vCPU/RAM
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Aislamiento de Cuentas (LVE)</li>
+                                <li>Selección de versiones PHP</li>
+                                <li>Estabilidad mejorada</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=LIC-CLOUDL-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>WHMCS License</h3>
+                        <p style="color:var(--muted)">Solución de automatización y gestión de clientes para empresas de hosting.</p>
+                        <div class="price">$18.95 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            Clientes: Ilimitados | Marca: Completa
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Automatización de facturación</li>
+                                <li>Portal de soporte integrado</li>
+                                <li>Soporte para múltiples pasarelas</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=LIC-WHMCS-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Plesk Obsidian</h3>
+                        <p style="color:var(--muted)">Panel de control alternativo enfocado en desarrolladores y gestión sencilla.</p>
+                        <div class="price">$12.50 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            Dominios: 30 | Funciones: Developer Pack
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Git Integration</li>
+                                <li>Docker Support</li>
+                                <li>Security Advisor</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=LIC-PLESK-001" class="cta">Comprar</a></div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Addons, Seguridad y Soporte Adicional </h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>Backup Automático</h3>
+                        <p style="color:var(--muted)">Servicio de respaldo automático diario</p>
+                        <div class="price">$8.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Frecuencia:** Diario | **Retención:** 30 Días
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Automated Backups</li>
+                                <li>One-Click Restore</li>
+                                <li>30 Days Retention</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-BAK-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Protección DDoS</h3>
+                        <p style="color:var(--muted)">Protección avanzada contra ataques DDoS</p>
+                        <div class="price">$35.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Capacidad:** 100Gbps | **Mitigación:** Automática
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>100Gbps Protection</li>
+                                <li>Auto Mitigation</li>
+                                <li>24/7 Monitoring</li>
+                                <li>Real-time Reports</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-DDP-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>SSL Premium</h3>
+                        <p style="color:var(--muted)">Certificado SSL de validación extendida</p>
+                        <div class="price">$49.99 <span class="billing-cycle">/yearly</span></div>
+                        <div class="specs">
+                            **Garantía:** $1,000,000 | **Validación:** Extendida
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>256-bit Encryption</li>
+                                <li>Green Address Bar</li>
+                                <li>$1M Warranty</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-SSL-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Soporte Prioritario</h3>
+                        <p style="color:var(--muted)">Servicio de soporte técnico prioritario 24/7</p>
+                        <div class="price">$99.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Tiempo de respuesta garantizado:** 15 minutos
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>24/7 Availability</li>
+                                <li>15min Response Time</li>
+                                <li>Direct Phone Line</li>
+                                <li>Dedicated Agent</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=SUP-PRI-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Monitoreo Avanzado</h3>
+                        <p style="color:var(--muted)">Monitoreo de rendimiento, logs y seguridad en tiempo real.</p>
+                        <div class="price">$15.00 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Cobertura:** 1 Servidor | **Almacenamiento de logs:** 90 Días
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Alertas en tiempo real</li>
+                                <li>Análisis de logs detallado</li>
+                                <li>Informes de rendimiento</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-MON-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>VPN Empresarial</h3>
+                        <p style="color:var(--muted)">Servicio de red privada virtual para proteger el acceso a tus servidores.</p>
+                        <div class="price">$19.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Usuarios:** 5 | **Ubicaciones:** 10+
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Cifrado de grado militar</li>
+                                <li>IP Dedicada Opcional</li>
+                                <li>Acceso seguro remoto</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-VPN-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Migración Premium</h3>
+                        <p style="color:var(--muted)">Migración completa de tu infraestructura por un ingeniero dedicado.</p>
+                        <div class="price">$149.00 <span class="billing-cycle">/one-time</span></div>
+                        <div class="specs">
+                            **Servidores:** Hasta 5 | **Tiempo de entrega:** 48 horas
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Sin tiempo de inactividad (Zero Downtime)</li>
+                                <li>Verificación de datos</li>
+                                <li>Soporte post-migración</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-MIG-001" class="cta">Comprar</a></div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Firewall de Aplicación Web (WAF)</h3>
+                        <p style="color:var(--muted)">Protección a nivel de aplicación contra inyecciones SQL, XSS, etc.</p>
+                        <div class="price">$29.99 <span class="billing-cycle">/monthly</span></div>
+                        <div class="specs">
+                            **Reglas:** Personalizadas | **Mitigación:** Capa 7
+                        </div>
+                        <div class="features-list">
+                            <ul>
+                                <li>Reglas OWASP Top 10</li>
+                                <li>Protección en tiempo real</li>
+                                <li>Integración con CDN</li>
+                            </ul>
+                        </div>
+                        <div class="cta"><a href="register.html?sku=ADD-WAF-001" class="cta">Comprar</a></div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <footer>
+            <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap">
+                <div>
+                    <strong>ServerX</strong>
+                    <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+                </div>
+                <nav style="display:flex;gap:12px;align-items:center">
+                    <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+                    <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+                    <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changelog — ServerX | Historial de Actualizaciones</title>
+    <meta name="description" content="Historial completo de las últimas actualizaciones, nuevas características y mejoras en el servicio de infraestructura de ServerX." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización, asumiendo variables de color */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --surface: #ecf0f1;
+            --feature: #3498db; /* Azul para Nuevas Features */
+            --improvement: #2ecc71; /* Verde para Mejoras */
+            --fix: #e74c3c; /* Rojo para Correcciones */
+            --border: #bdc3c7;
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); text-align: center; }
+        .changelog-grid { display: grid; grid-template-columns: 250px 1fr; gap: 30px; margin-top: 40px; }
+        .timeline { border-left: 2px solid var(--border); padding-left: 20px; }
+        .release-date { font-weight: bold; font-size: 1.2rem; color: var(--primary); margin-bottom: 20px; position: relative; }
+        .release-date::before { content: ''; position: absolute; left: -26px; top: 5px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+        .update-category { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-right: 10px; }
+        .tag-feature { background: var(--feature); color: white; }
+        .tag-improvement { background: var(--improvement); color: white; }
+        .tag-fix { background: var(--fix); color: white; }
+        .release-note { margin-bottom: 30px; padding: 15px; border-radius: 8px; border: 1px solid var(--border); }
+        .release-note h4 { margin-top: 0; font-size: 1.1rem; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="blog.html" style="text-decoration: none; color: var(--primary);">Blog</a>
+          <a href="roadmap.html" style="text-decoration: none; color: var(--primary);">Hoja de ruta</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section">
+          <h1 style="font-size: 2.5rem; color: var(--primary);">Changelog: Historial de Versiones</h1>
+          <p style="color:var(--muted); font-size: 1.1rem;">Transparencia total sobre los últimos cambios, nuevas características, mejoras de rendimiento y correcciones de errores en el servicio de infraestructura.</p>
+        </section>
+
+        <section style="padding-top:18px">
+          <div class="changelog-grid">
+            
+            <aside style="border-right: 1px solid var(--border); padding-right: 20px;">
+                <h3 style="margin-top:0; font-size: 1.4rem;">Filtros</h3>
+                <div style="margin-bottom: 15px;">
+                    <strong style="display:block; margin-bottom: 5px;">Categoría</strong>
+                    <div style="display:flex; flex-direction:column; gap: 5px;">
+                        <span class="update-category tag-feature" style="cursor: pointer;"><i class="fas fa-plus-circle"></i> Nuevas Características</span>
+                        <span class="update-category tag-improvement" style="cursor: pointer;"><i class="fas fa-arrow-up"></i> Mejoras</span>
+                        <span class="update-category tag-fix" style="cursor: pointer;"><i class="fas fa-bug"></i> Correcciones</span>
+                        <span class="update-category" style="background: var(--muted); color: white; cursor: pointer;"><i class="fas fa-cogs"></i> Operacional</span>
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong style="display:block; margin-bottom: 5px;">Productos</strong>
+                    <div style="display:flex; flex-direction:column; gap: 5px;">
+                        <span style="color:var(--muted); font-size:0.9rem;">API</span>
+                        <span style="color:var(--muted); font-size:0.9rem;">Dashboard</span>
+                        <span style="color:var(--muted); font-size:0.9rem;">Red y Seguridad</span>
+                        <span style="color:var(--muted); font-size:0.9rem;">CLI</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="timeline">
+              
+              <div class="release-date" style="margin-top: 0;">01 Dic 2025</div>
+              <div class="release-note">
+                  <span class="update-category tag-feature">Nueva Característica</span>
+                  <span class="update-category tag-improvement">Mejora</span>
+                  <h4>Lanzamiento de la Región 'Ecuador-Central-1'</h4>
+                  <p style="color:var(--muted); margin-bottom: 5px;">Hemos abierto nuestro primer centro de datos en Sudamérica (EC-Central-1), ofreciendo baja latencia para todos los usuarios en la región.</p>
+                  <ul style="color:var(--muted); font-size:0.95rem; list-style: disc; padding-left: 20px;">
+                      <li>Nuevos *endpoints* de API disponibles para la gestión de recursos en EC-Central-1.</li>
+                      <li>Latencia promedio de la red reducida en un 35% para los usuarios en Ecuador y Perú.</li>
+                  </ul>
+              </div>
+
+              <div class="release-date">27 Nov 2025 (Dashboard v2.1)</div>
+              <div class="release-note">
+                  <span class="update-category tag-improvement">Mejora</span>
+                  <span class="update-category tag-fix">Corrección</span>
+                  <h4>Rediseño del Dashboard y optimización de métricas</h4>
+                  <p style="color:var(--muted); margin-bottom: 5px;">Rediseño del dashboard con mejor visualización de costos y métricas en tiempo real.</p>
+                  <ul style="color:var(--muted); font-size:0.95rem; list-style: disc; padding-left: 20px;">
+                      <li>**Mejora:** Optimización de la carga de gráficos de CPU/RAM, mejorando la velocidad de carga del panel en un 40%.</li>
+                      <li>**Mejora:** Nueva visualización de costos proyectados basada en el consumo horario actual.</li>
+                      <li>**Corrección:** Se corrigió un error que causaba que el *widget* de alertas críticas se duplicara en ciertos navegadores.</li>
+                  </ul>
+              </div>
+
+              <div class="release-date">20 Nov 2025</div>
+              <div class="release-note">
+                  <span class="update-category tag-feature">Nueva Característica</span>
+                  <h4>Mejoras de Seguridad: RBAC y SSO</h4>
+                  <p style="color:var(--muted); margin-bottom: 5px;">Lanzamiento de nuevas herramientas de seguridad enfocadas en equipos grandes y cumplimiento normativo.</p>
+                  <ul style="color:var(--muted); font-size:0.95rem; list-style: disc; padding-left: 20px;">
+                      <li>**Nueva Característica:** Controles de acceso basados en roles (RBAC) con permisos personalizables por proyecto.</li>
+                      <li>**Nueva Característica:** Soporte para inicio de sesión único (SSO) a través de SAML (disponible para planes Enterprise).</li>
+                      <li>Auditoría de logs mejorada, capturando dirección IP y *user agent* en todas las acciones administrativas.</li>
+                  </ul>
+              </div>
+
+              <div class="release-date">15 Nov 2025</div>
+              <div class="release-note">
+                  <span class="update-category tag-improvement">Mejora</span>
+                  <h4>APIs v3: Migración completa a RESTful</h4>
+                  <p style="color:var(--muted); margin-bottom: 5px;">Lanzamiento de APIs v3 con mejor rendimiento y documentación mejorada, enfocadas en la automatización de IaC.</p>
+                  <ul style="color:var(--muted); font-size:0.95rem; list-style: disc; padding-left: 20px;">
+                      <li>Rendimiento mejorado en la creación y eliminación de recursos vía API (hasta 20% más rápido).</li>
+                      <li>Documentación interactiva disponible en Swagger para todos los *endpoints*.</li>
+                  </ul>
+              </div>
+              
+              <div class="release-date">10 Nov 2025</div>
+              <div class="release-note">
+                  <span class="update-category tag-feature">Nueva Característica</span>
+                  <span class="update-category tag-fix">Corrección</span>
+                  <h4>CLI beta y corrección de facturación</h4>
+                  <p style="color:var(--muted); margin-bottom: 5px;">Versión beta de la herramienta CLI para control desde línea de comandos y ajustes en el sistema de facturación.</p>
+                  <ul style="color:var(--muted); font-size:0.95rem; list-style: disc; padding-left: 20px;">
+                      <li>**Nueva Característica:** Lanzamiento de la herramienta CLI (Command Line Interface) en fase beta pública.</li>
+                      <li>**Corrección:** Se resolvió un error en la facturación que aplicaba incorrectamente descuentos por volumen a ciertos clientes Enterprise.</li>
+                  </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Socios — ServerX | Alianzas Estratégicas</title>
+    <meta name="description" content="Conoce a nuestros socios tecnológicos, de infraestructura y canal que nos ayudan a ofrecer una plataforma robusta y completa." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización, asumiendo variables de color */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --surface: #ecf0f1;
+            --border: #bdc3c7;
+            --tech: #3498db;     /* Azul para Tecnología */
+            --channel: #2ecc71;  /* Verde para Canal */
+            --security: #f39c12; /* Naranja para Seguridad */
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .grid-partners { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .partner-card { padding: 25px; border-radius: 12px; border: 1px solid var(--border); text-align: center; background: white; }
+        .partner-card h3 { font-size: 1.4rem; margin-bottom: 5px; }
+        .partner-logo { font-size: 3rem; margin-bottom: 15px; }
+        .tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-top: 10px; }
+        .tag-tech { background: #e0e6f8; color: var(--tech); }
+        .tag-channel { background: #e8f9e8; color: var(--channel); }
+        .tag-security { background: #fdf5e0; color: var(--security); }
+        .cta-footer { background: var(--surface); padding: 40px; border-radius: 12px; margin-top: 60px; text-align: center; }
+        .cta-footer a { background: var(--accent); color: white; padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="about.html" style="text-decoration: none; color: var(--primary);">Acerca</a>
+          <a href="features.html" style="text-decoration: none; color: var(--primary);">Características</a>
+          <a href="contact.html" style="text-decoration: none; color: var(--primary);">Contacto</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section">
+          <h1 style="font-size: 2.5rem; color: var(--primary);">Alianzas Estratégicas</h1>
+          <p style="color:var(--muted); font-size: 1.1rem;">Trabajamos con líderes mundiales en infraestructura, tecnología de *software* y consultoría para garantizar la mejor experiencia, estabilidad y cumplimiento para nuestros clientes.</p>
+        </section>
+
+        <section style="margin-top: 40px;" aria-labelledby="socios-tecnologicos">
+            <h2 id="socios-tecnologicos" style="font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Socios de Infraestructura y Tecnología</h2>
+            
+            <div class="grid-partners">
+                
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#FF9900;"><i class="fab fa-aws"></i></div>
+                    <h3>Amazon Web Services (AWS)</h3>
+                    <p class="tag tag-tech">Infraestructura Crítica</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Socio primario para la resiliencia en regiones clave y servicios *edge computing*.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#543C61;"><i class="fas fa-database"></i></div>
+                    <h3>Datastore Global</h3>
+                    <p class="tag tag-tech">Bases de Datos Gestionadas</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Proporciona nuestro *backend* de datos distribuido y soluciones de *clustering* de alta disponibilidad.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#f39c12;"><i class="fas fa-certificate"></i></div>
+                    <h3>SecureCert Labs</h3>
+                    <p class="tag tag-security">Cumplimiento y Auditoría</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Socio independiente que realiza auditorías anuales para mantener nuestras certificaciones ISO y SOC 2.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#5849A5;"><i class="fas fa-sitemap"></i></div>
+                    <h3>HashiCorp (Terraform)</h3>
+                    <p class="tag tag-tech">DevOps e IaC</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Integración nativa para la orquestación y gestión de la infraestructura como código (IaC).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="margin-top: 60px;" aria-labelledby="socios-canal">
+            <h2 id="socios-canal" style="font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Socios de Canal y Consultoría</h2>
+            <p style="color:var(--muted); font-size: 1.1rem; margin-top: 20px;">Nuestra red global de socios de canal ayuda a las empresas a implementar, migrar y optimizar sus servicios ServerX.</p>
+
+            <div class="grid-partners">
+                
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#2ecc71;"><i class="fas fa-handshake"></i></div>
+                    <h3>Global Integrators</h3>
+                    <p class="tag tag-channel">Integración y Migración</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Socios certificados para proyectos complejos de migración de grandes cargas de trabajo a ServerX.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#1abc9c;"><i class="fas fa-globe"></i></div>
+                    <h3>Cloud Brokers Latam</h3>
+                    <p class="tag tag-channel">Distribución Regional</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Distribuidor autorizado enfocado en llevar ServerX a mercados emergentes en América Latina.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo" style="color:#e67e22;"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>TechTrain Academy</h3>
+                    <p class="tag tag-channel">Capacitación y Certificación</p>
+                    <p style="color:var(--muted); margin-top: 10px;">Ofrece programas de certificación y entrenamiento para equipos de TI que usan la plataforma ServerX.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-footer" aria-labelledby="join-partner-program">
+            <h2 id="join-partner-program" style="margin-top: 0; color: var(--primary);">¿Quieres ser un Socio de ServerX?</h2>
+            <p style="color:var(--muted);">Estamos en constante búsqueda de consultoras, integradores y proveedores de tecnología que compartan nuestra visión de simplicidad y potencia en la nube.</p>
+            <a href="partner-program.html"><i class="fas fa-handshake-angle"></i> Únete a nuestro programa de socios</a>
+        </section>
+        
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

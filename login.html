@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Acceder — ServerX</title>
+		<meta name="description" content="Inicia sesión en tu cuenta de ServerX." />
+		<link rel="stylesheet" href="/frontend/css/site.css">
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="brand" aria-label="ServerX">
+					<svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+					<span>ServerX</span>
+				</div>
+				<nav class="nav" aria-label="Navegación principal">
+					<a href="index.html">Inicio</a>
+					<a href="about.html">Acerca</a>
+					<a href="features.html">Características</a>
+					<a href="pricing.html">Precios</a>
+					<a class="cta" href="register.html">Comenzar</a>
+				</nav>
+			</header>
+
+			<main>
+				<section style="padding-top:18px;max-width:520px;margin:0 auto">
+					<div class="card">
+						<h1 style="margin-top:0">Acceder</h1>
+						<form id="login-form">
+							<div class="form-field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" required></div>
+							<div class="form-field"><label for="password">Contraseña</label><input class="input" id="password" name="password" type="password" required></div>
+							<div style="display:flex;gap:10px;align-items:center"><button class="cta" type="submit">Entrar</button><a href="reset-password.html" style="color:var(--muted)">¿Olvidaste tu contraseña?</a></div>
+						</form>
+					</div>
+				</section>
+			</main>
+
+			<footer>
+				<div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap">
+					<div>
+						<strong>ServerX</strong>
+						<div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+					</div>
+					<nav style="display:flex;gap:12px;align-items:center">
+						<a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+						<a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+						<a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+					</nav>
+				</div>
+			</footer>
+		</div>
+ 
+				<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+				<script src="/frontend/js/supabase/supabase-client.js"></script>
+				<script src="/frontend/js/supabase/auth.js"></script>
+				<script>
+					(function(){
+						const form = document.getElementById('login-form');
+						form?.addEventListener('submit', async (e)=>{
+							e.preventDefault();
+							const client = window.supabaseClient || window.supabase;
+							if(!client){ alert('Supabase no configurado'); return; }
+							const email = form.email.value; const password = form.password.value;
+							const res = await client.auth.signInWithPassword({ email, password });
+							if(res.error){ alert(res.error.message); } else { window.location.href = '/admin/dashboard.html'; }
+						});
+					})();
+				</script>
+				<script src="/frontend/js/site.js"></script>
+	</body>
+</html>
+
+ 

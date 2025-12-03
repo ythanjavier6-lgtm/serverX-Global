@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solicitud de Socio — ServerX | Aplicar al Programa</title>
+    <meta name="description" content="Formulario de aplicación para unirse al Programa de Socios de ServerX como consultor, integrador o revendedor." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización, asumiendo variables de color */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --surface: #ecf0f1;
+            --border: #bdc3c7;
+            --gold: #f39c12;
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); text-align: center; }
+        .form-container { max-width: 700px; margin: 40px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary); }
+        .form-group input[type="text"], 
+        .form-group input[type="email"], 
+        .form-group input[type="tel"], 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background: #0044cc;
+        }
+        .privacy-note { margin-top: 30px; font-size: 0.9rem; color: var(--muted); text-align: center; }
+        .privacy-note a { color: var(--accent); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="about.html" style="text-decoration: none; color: var(--primary);">Acerca</a>
+          <a href="features.html" style="text-decoration: none; color: var(--primary);">Características</a>
+          <a href="contact.html" style="text-decoration: none; color: var(--primary);">Contacto</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section">
+          <h1 style="font-size: 2.5rem; color: var(--primary);"><i class="fas fa-handshake-angle" style="color: var(--gold); margin-right: 10px;"></i> Solicitud de Programa de Socios</h1>
+          <p style="color:var(--muted); font-size: 1.1rem; max-width: 800px; margin: 15px auto;">Por favor, complete el siguiente formulario para que nuestro equipo de alianzas evalúe su solicitud. Nos pondremos en contacto dentro de 1 a 2 días hábiles.</p>
+        </section>
+
+        <div class="form-container">
+            <form action="/api/partner_application" method="POST">
+
+                <h3 style="color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 0;"><i class="fas fa-building" style="margin-right: 8px;"></i> Información de la Empresa</h3>
+
+                <div class="form-group">
+                    <label for="companyName">Nombre Legal de la Empresa <span style="color: var(--accent);">*</span></label>
+                    <input type="text" id="companyName" name="companyName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="companyWebsite">Sitio Web de la Empresa <span style="color: var(--accent);">*</span></label>
+                    <input type="text" id="companyWebsite" name="companyWebsite" required placeholder="https://">
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">País de Operación Principal <span style="color: var(--accent);">*</span></label>
+                    <input type="text" id="country" name="country" required placeholder="Ej: Ecuador">
+                </div>
+
+                <div class="form-group">
+                    <label for="employees">Tamaño del Equipo (Empleados)</label>
+                    <select id="employees" name="employees">
+                        <option value="1-10">1 - 10</option>
+                        <option value="11-50">11 - 50</option>
+                        <option value="51-200">51 - 200</option>
+                        <option value="200+">+200</option>
+                    </select>
+                </div>
+                
+                <h3 style="color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 30px;"><i class="fas fa-user-tie" style="margin-right: 8px;"></i> Contacto Clave</h3>
+
+                <div class="form-group">
+                    <label for="contactName">Nombre Completo del Contacto <span style="color: var(--accent);">*</span></label>
+                    <input type="text" id="contactName" name="contactName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Correo Electrónico Corporativo <span style="color: var(--accent);">*</span></label>
+                    <input type="email" id="contactEmail" name="contactEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactPhone">Número de Teléfono</label>
+                    <input type="tel" id="contactPhone" name="contactPhone" placeholder="Ej: +593 99 123 4567">
+                </div>
+
+                <h3 style="color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 30px;"><i class="fas fa-puzzle-piece" style="margin-right: 8px;"></i> Modelo de Colaboración</h3>
+
+                <div class="form-group">
+                    <label for="partnerType">Tipo de Asociación Buscada <span style="color: var(--accent);">*</span></label>
+                    <select id="partnerType" name="partnerType" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="integrator">Integrador de Sistemas/Consultoría</option>
+                        <option value="reseller">Revendedor/Distribuidor</option>
+                        <option value="technology">Socio Tecnológico (ISV)</option>
+                        <option value="referral">Programa de Referidos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="expertise">Áreas de Experiencia (Separadas por coma)</label>
+                    <input type="text" id="expertise" name="expertise" placeholder="Ej: DevOps, Kubernetes, Migración Cloud, Ciberseguridad">
+                </div>
+
+                <div class="form-group">
+                    <label for="goals">¿Cuáles son sus principales objetivos al asociarse con ServerX?</label>
+                    <textarea id="goals" name="goals" placeholder="Describa brevemente sus metas..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i> Enviar Solicitud</button>
+
+            </form>
+            
+            <p class="privacy-note">
+                Al enviar este formulario, usted acepta nuestros <a href="terms.html">Términos del Servicio</a> y <a href="privacy.html">Política de Privacidad</a>.
+            </p>
+        </div>
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

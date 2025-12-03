@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Acerca de ServerX — Misión, Valores y Equipo</title>
+        <meta name="description" content="Conoce la misión, los valores fundamentales y el equipo detrás de ServerX, la plataforma de infraestructura gestionada para el futuro de DevOps." />
+        <link rel="stylesheet" href="/frontend/css/site.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <style>
+            /* Estilos de las redes sociales en el footer y el equipo */
+            .social-icons-footer a, .team-social a {
+                color: var(--text-gray); /* Color de texto suave */
+                margin-left: 15px; /* Espaciado entre iconos */
+                font-size: 1.5rem; /* Tamaño del icono */
+                transition: color 0.3s;
+            }
+            .social-icons-footer a:hover, .team-social a:hover {
+                color: var(--accent-blue); /* Efecto hover para acentuar */
+            }
+            /* Reset del margen izquierdo para el primer icono en el equipo */
+            .team-social a:first-child {
+                margin-left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="brand" aria-label="ServerX">
+                    <i class="fas fa-server" aria-hidden="true"></i>
+                    <span>ServerX</span>
+                </div>
+                <nav class="nav" aria-label="Navegación principal">
+                    <a href="index.html">Inicio</a>
+                    <a href="features.html">Características</a>
+                    <a href="pricing.html">Precios</a>
+                    <a href="contact.html">Contacto</a>
+                    <a class="cta" href="register.html">Comenzar</a>
+                </nav>
+            </header>
+
+            <main>
+                <section class="hero" style="padding-bottom: 40px;">
+                    <div class="left">
+                        <h1>Construyendo el futuro de la infraestructura.</h1>
+                        <p>En **ServerX**, nuestra misión es simple: reducir la fricción operativa para que los desarrolladores y equipos de ingeniería puedan enfocarse completamente en el producto. Creemos en el código abierto, la transparencia y el soporte humano.</p>
+                        <div class="actions">
+                            <a class="cta" href="#team">Conoce a nuestro equipo</a>
+                            <a href="#valores" class="btn-secondary">Nuestros valores</a>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 30px; border-left: 5px solid var(--accent-blue);">
+                        <strong style="display:block;margin-bottom:15px; font-size: 1.2rem; color: var(--midnight);">Datos Clave ServerX</strong>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 1.1rem;">
+                            <div style="color:var(--text-muted);">Clientes: <strong style="color:var(--midnight);">+120</strong></div>
+                            <div style="color:var(--text-muted);">Latencia Avg: <strong style="color:var(--midnight);">5ms</strong></div>
+                            <div style="color:var(--text-muted);">Uptime SLA: <strong style="color:var(--midnight);">99.99%</strong></div>
+                            <div style="color:var(--text-muted);">Soporte: <strong style="color:var(--midnight);">24/7</strong></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <hr style="margin: 80px 0;">
+
+                <section id="valores" style="margin-top:20px">
+                    <h2 style="text-align:center; margin-bottom: 40px;">Nuestros Valores Fundamentales</h2>
+                    <p class="subtitle" style="margin-bottom: 60px;">Estos principios guían cada decisión que tomamos, desde el desarrollo de la plataforma hasta el soporte al cliente.</p>
+                    <div class="features-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div class="feature card" style="text-align:center;">
+                            <i class="fas fa-shield-alt" style="font-size:3rem; color:var(--accent-blue); margin-bottom:15px;"></i>
+                            <h3>Confiabilidad primero</h3>
+                            <p style="color:var(--text-muted);">La infraestructura debe ser invisible. Nos obsesionamos con la redundancia, la seguridad y el uptime, para que tú no tengas que hacerlo.</p>
+                        </div>
+                        <div class="feature card" style="text-align:center;">
+                            <i class="fas fa-eye" style="font-size:3rem; color:var(--accent-blue); margin-bottom:15px;"></i>
+                            <h3>Transparencia total</h3>
+                            <p style="color:var(--text-muted);">Sin costos ocultos, sin letras pequeñas. Nuestra facturación es simple y nuestro código es auditable. La verdad siempre al frente.</p>
+                        </div>
+                        <div class="feature card" style="text-align:center;">
+                            <i class="fas fa-handshake" style="font-size:3rem; color:var(--accent-blue); margin-bottom:15px;"></i>
+                            <h3>Soporte Humano</h3>
+                            <p style="color:var(--text-muted);">Cuando nos necesitas, hablas con un ingeniero, no con un bot. Nuestro soporte está compuesto por expertos listos para ayudarte 24/7.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <hr style="margin: 80px 0;">
+
+                <section id="ubicacion" style="margin-top: 20px;">
+                    <h2 style="text-align:center; margin-bottom: 20px;">Infraestructura Global</h2>
+                    <p class="subtitle" style="margin-bottom: 30px;">Distribuida estratégicamente para la baja latencia y alta disponibilidad.</p>
+                    <div class="location-map" style="text-align: center; margin-bottom: 60px;">
+                        
+                        <p style="margin-top: 15px; font-style: italic; color: var(--text-muted);">Nuestros puntos de presencia (PoP) se extienden a través de América, Europa y Asia, optimizando la velocidad para tus usuarios.</p>
+                        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px; font-weight: 600;">
+                            <span style="color: var(--accent-blue);"><i class="fas fa-globe"></i> 12 Regiones</span>
+                            <span style="color: var(--accent-blue);"><i class="fas fa-network-wired"></i> 20+ Puntos de Intercambio</span>
+                        </div>
+                    </div>
+                </section>
+
+                <hr style="margin: 80px 0;">
+                
+                <section id="historia" style="margin-top: 20px;">
+                    <h2 style="text-align:center; margin-bottom: 20px;">Nuestra Historia</h2>
+                    <p class="subtitle" style="margin-bottom: 60px;">Desde la idea inicial en un garaje hasta una plataforma global en la nube.</p>
+                    
+                    <div class="timeline" style="max-width: 900px; margin: 0 auto; padding-left: 20px; border-left: 3px solid var(--border);">
+                        <div class="timeline-item" style="margin-bottom: 40px; position: relative;">
+                            <div style="position: absolute; left: -30px; top: 0; width: 14px; height: 14px; background: var(--accent-blue); border-radius: 50%; border: 3px solid var(--text-light);"></div>
+                            <h3 style="margin-top: 0; font-size: 1.5rem;">2021: Fundación & MVP</h3>
+                            <p style="color:var(--text-muted);">Lanzamiento de la versión Mínima Viable (MVP) enfocada en despliegue automatizado de máquinas virtuales.</p>
+                        </div>
+                        <div class="timeline-item" style="margin-bottom: 40px; position: relative;">
+                            <div style="position: absolute; left: -30px; top: 0; width: 14px; height: 14px; background: var(--accent-blue); border-radius: 50%; border: 3px solid var(--text-light);"></div>
+                            <h3 style="margin-top: 0; font-size: 1.5rem;">2023: Ronda de Semilla & Expansión Global</h3>
+                            <p style="color:var(--text-muted);">Aseguramos la inversión inicial. Apertura de 5 nuevas regiones de infraestructura en América y Europa.</p>
+                        </div>
+                        <div class="timeline-item" style="margin-bottom: 40px; position: relative;">
+                            <div style="position: absolute; left: -30px; top: 0; width: 14px; height: 14px; background: var(--accent-blue); border-radius: 50%; border: 3px solid var(--text-light);"></div>
+                            <h3 style="margin-top: 0; font-size: 1.5rem;">2025: ServerX v2.0</h3>
+                            <p style="color:var(--text-muted);">Lanzamiento de la arquitectura unificada que incluye contenedores, serverless y facturación API.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr style="margin: 80px 0;">
+
+                <section id="testimonios" style="margin-top:20px">
+                    <h2 style="text-align:center; margin-bottom: 40px;">Lo que dicen nuestros clientes</h2>
+                    <div class="testimonials-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        
+                        <div class="card" style="padding: 25px;">
+                            <p style="font-style: italic; margin-bottom: 15px;">"La transición a ServerX fue impecable. El soporte 24/7 con ingenieros reales ha sido un game-changer para nuestro equipo de DevOps."</p>
+                            <div style="font-weight: 700;">— Laura C.</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">CTO en AlphaTech Solutions</div>
+                        </div>
+
+                        <div class="card" style="padding: 25px;">
+                            <p style="font-style: italic; margin-bottom: 15px;">"Finalmente, infraestructura con precios honestos y sin sobrecargos por características básicas. Su compromiso con la transparencia es admirable."</p>
+                            <div style="font-weight: 700;">— Omar R.</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Fundador de DataStream App</div>
+                        </div>
+
+                        <div class="card" style="padding: 25px;">
+                            <p style="font-style: italic; margin-bottom: 15px;">"El SLA de 99.99% de uptime no es una promesa vacía. ServerX nos da la confianza para enfocarnos 100% en la innovación."</p>
+                            <div style="font-weight: 700;">— Daniela G.</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">SRE en GeoCode Corp</div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <hr style="margin: 80px 0;">
+
+                <section id="reconocimientos" style="margin-top:20px; text-align: center;">
+                    <h2 style="margin-bottom: 40px;">Reconocimientos y Prensa</h2>
+                    <p class="subtitle" style="margin-bottom: 50px;">Estamos orgullosos de ser reconocidos por la industria por nuestra innovación en la nube y el enfoque en el desarrollador.</p>
+                    <div class="awards-grid" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
+                        <div style="text-align: center; max-width: 200px;">
+                            <i class="fas fa-trophy" style="font-size: 2.5rem; color: gold; margin-bottom: 10px;"></i>
+                            <h3 style="font-size: 1.2rem; margin-top: 0;">Premio Innovación 2024</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Revista Tech Leader - Por arquitectura Open Source.</p>
+                        </div>
+                        <div style="text-align: center; max-width: 200px;">
+                            <i class="fas fa-star-of-life" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 10px;"></i>
+                            <h3 style="font-size: 1.2rem; margin-top: 0;">Top 10 Cloud Startup</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Informe Global de Infraestructura (Q3 2024).</p>
+                        </div>
+                        <div style="text-align: center; max-width: 200px;">
+                            <i class="fas fa-newspaper" style="font-size: 2.5rem; color: #1E88E5; margin-bottom: 10px;"></i>
+                            <h3 style="font-size: 1.2rem; margin-top: 0;">Mención en "The Verge"</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">"ServerX simplifica la migración a Serverless."</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr style="margin: 80px 0;">
+
+                <section id="team" style="margin-top:20px">
+                    <h2 style="text-align:center; margin-bottom: 40px;">Conoce al Equipo Fundador</h2>
+                    <p class="subtitle" style="margin-bottom: 60px;">Expertos en cloud computing, seguridad y desarrollo de productos a escala global.</p>
+                    
+                    <div class="team-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        
+                        <div class="card" style="text-align:center;">
+                           <img src="https://raw.githubusercontent.com/ythanjavier6-lgtm/serverX-Global/refs/heads/main/frontend/img/carolina.jpg" style="width: 120px; height: 120px; background: var(--surface); border-radius: 50%; margin: 0 auto 15px;" alt="Foto de Carolina">
+                            <h3 style="margin-top: 0; font-size: 1.6rem;">Carolina</h3>
+                            <p style="color:var(--accent-blue); font-weight: 600; margin-bottom: 10px;">Co-Founder & Estratega Creativa</p>
+                            <p style="color:var(--text-muted); font-size: 0.95rem;">Mente brillante detrás de las estrategias de ServerX. Su visión transforma conceptos complejos en experiencias claras.</p>
+                            <div class="team-social" style="margin-top: 15px; font-size: 1.2rem; color: var(--text-gray);">
+                                <a href="#" style="color:inherit;" aria-label="LinkedIn de Carolina"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Twitter de Carolina"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Instagram de Carolina"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="text-align:center;">
+                            <img src="https://raw.githubusercontent.com/ythanjavier6-lgtm/serverX-Global/refs/heads/main/frontend/img/wiliee.jpg" style="width: 120px; height: 120px; background: var(--surface); border-radius: 50%; margin: 0 auto 15px;" alt="Foto de Willie">
+                            <h3 style="margin-top: 0; font-size: 1.6rem;">Willie</h3>
+                            <p style="color:var(--accent-blue); font-weight: 600; margin-bottom: 10px;">Co-Founder & Compañero de Ideas</p>
+                            <p style="color:var(--text-muted); font-size: 0.95rem;">Buen amigo y compañero en el camino de ServerX. Su apoyo constante impulsa el equipo adelante.</p>
+                            <p style="color:var(--accent-blue); font-size: 0.9rem; margin-top: 15px;">Músico y Productor: ¿Buscas Prezser?</p>
+                            <a href="https://offszn1.onrender.com/index" class="btn-secondary" style="display: inline-block; margin-top: 10px; padding: 10px 20px; font-size: 0.95rem;">Prezser</a>
+                            <div class="team-social" style="margin-top: 15px; font-size: 1.2rem; color: var(--text-gray);">
+                                <a href="#" style="color:inherit;" aria-label="LinkedIn de Willie"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="YouTube de Willie"><i class="fab fa-youtube"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Instagram de Willie"><i class="fab fa-instagram"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="GitHub de Willie"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="card" style="text-align:center;">
+                            <img src="https://i.pinimg.com/1200x/83/97/40/83974086a5d1e457e7ce0331c96649f4.jpg" style="width: 120px; height: 120px; background: var(--surface); border-radius: 50%; margin: 0 auto 15px;" alt="Foto de JavierX">
+                            <h3 style="margin-top: 0; font-size: 1.6rem;">JavierX</h3>
+                            <p style="color:var(--accent-blue); font-weight: 600; margin-bottom: 10px;">Founder & Chief Technology Officer (CTO)</p>
+                            <p style="color:var(--text-muted); font-size: 0.95rem;">Lidera la visión técnica y la hoja de ruta de la plataforma. Experto en sistemas distribuidos y arquitecturas de nube a gran escala.</p>
+                            <div class="team-social" style="margin-top: 15px; font-size: 1.2rem; color: var(--text-gray);">
+                                <a href="#" style="color:inherit;" aria-label="LinkedIn de JavierX"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="GitHub de JavierX"><i class="fab fa-github"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Facebook de JavierX"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="card" style="text-align:center;">
+                            <img src="https://raw.githubusercontent.com/ythanjavier6-lgtm/serverX-Global/refs/heads/main/frontend/img/Handy.jpg" style="width: 120px; height: 120px; background: var(--surface); border-radius: 50%; margin: 0 auto 15px;" alt="Foto de Handy">
+                            <h3 style="margin-top: 0; font-size: 1.6rem;">Handy</h3>
+                            <p style="color:var(--accent-blue); font-weight: 600; margin-bottom: 10px;">Chief Operating Officer (COO)</p>
+                            <p style="color:var(--text-muted); font-size: 0.95rem;">Encargado de las operaciones diarias y la optimización de los procesos internos. Su enfoque en la eficiencia asegura una alta calidad de servicio.</p>
+                            <div class="team-social" style="margin-top: 15px; font-size: 1.2rem; color: var(--text-gray);">
+                                <a href="#" style="color:inherit;" aria-label="LinkedIn de Handy"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Twitter de Handy"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="color:inherit;" aria-label="Instagram de Handy"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align:center; margin-top: 60px;">
+                        <a href="careers.html" class="btn-secondary">Únete a nuestro equipo (¡Estamos contratando!)</a>
+                    </div>
+                </section>
+
+                <hr style="margin: 80px 0;">
+
+                <section id="cultura" style="margin-top:20px">
+                    <h2 style="text-align:center; margin-bottom: 40px;">Cultura e Impacto</h2>
+                    <p class="subtitle" style="margin-bottom: 60px;">Creemos que una gran empresa se construye sobre una cultura de respeto, innovación continua y diversidad.</p>
+                    <div class="culture-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div class="card" style="padding: 25px;">
+                            <i class="fas fa-seedling" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                            <h3 style="margin-top: 0;">Iniciativas Verdes</h3>
+                            <p style="color:var(--text-muted);">Comprometidos con la sostenibilidad. Compensamos el 100% de la huella de carbono de nuestra infraestructura global.</p>
+                        </div>
+                        <div class="card" style="padding: 25px;">
+                            <i class="fas fa-users-cog" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                            <h3 style="margin-top: 0;">Diversidad en Ingeniería</h3>
+                            <p style="color:var(--text-muted);">Nuestro equipo global representa más de 15 nacionalidades, fomentando perspectivas únicas en cada solución.</p>
+                        </div>
+                        <div class="card" style="padding: 25px;">
+                            <i class="fas fa-book-open" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 10px;"></i>
+                            <h3 style="margin-top: 0;">Aprendizaje Continuo</h3>
+                            <p style="color:var(--text-muted);">Cada empleado tiene un presupuesto anual para conferencias, cursos y certificaciones técnicas.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-final" style="margin-top:80px;text-align:center;padding:60px 30px;background:var(--secondary);border-radius:20px; color:var(--text-light);">
+                    <h2 style="margin-top:0;color:var(--text-light); font-size:2.5rem;">Comienza a operar sin límites.</h2>
+                    <p style="margin:0 auto 30px;color:#d1d5db; max-width:600px;">Prueba ServerX hoy y experimenta el poder de la infraestructura gestionada.</p>
+                    <a class="cta" href="register.html" style="font-size:1.1rem;padding:16px 32px;">Crear cuenta gratis</a>
+                </section>
+
+            </main>
+
+            <footer>
+                <div class="footer-main-content" style="display:flex;justify-content:space-between;flex-wrap:wrap;padding: 0 40px 30px; border-bottom: 1px solid var(--border);">
+                    <div class="footer-info" style="flex: 1 1 250px; margin-right: 40px;">
+                        <div class="brand" style="font-size:1.4rem; cursor:default; color:var(--midnight);"><i class="fas fa-server" aria-hidden="true" style="font-size:1.4rem; color:var(--accent-blue);"></i> ServerX</div>
+                        <p style="color:var(--text-gray);font-size:0.95rem; margin-top:10px;">Infraestructura simplificada para el futuro de tus aplicaciones.</p>
+                        
+                        <div class="social-icons-footer" style="margin-top: 20px;">
+                            <a href="#" aria-label="Visita ServerX en Twitter/X"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Visita ServerX en LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Visita ServerX en GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Suscríbete al canal de ServerX en YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="Únete a la comunidad de ServerX en Discord"><i class="fab fa-discord"></i></a>
+                            <a href="#" aria-label="Visita el Blog de ServerX"><i class="fas fa-blog"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-nav-group" style="flex: 1 1 150px; margin-bottom: 20px;">
+                        <h4 style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px; font-weight: 700;">Empresa</h4>
+                        <a href="about.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Acerca de nosotros</a>
+                        <a href="careers.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Carreras</a>
+                        <a href="contact.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Contacto</a>
+                        <a href="blog.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Blog</a>
+                    </div>
+                    
+                    <div class="footer-nav-group" style="flex: 1 1 150px; margin-bottom: 20px;">
+                        <h4 style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px; font-weight: 700;">Legal</h4>
+                        <a href="terms.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Términos</a>
+                        <a href="privacy.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Privacidad</a>
+                        <a href="cookies.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">Cookies</a>
+                        <a href="sla.html" style="display:block; color:var(--text-gray); text-decoration:none; margin-bottom: 8px;">SLA de Uptime</a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom" style="display:flex; justify-content:space-between; padding: 20px 40px 0; font-size: 0.9rem; color: var(--text-gray); flex-wrap: wrap;">
+                    <div class="copy">© 2025 ServerX. Todos los derechos reservados.</div>
+                    <div class="tech">Hecho para DevOps.</div>
+                </div>
+            </footer>
+        </div>
+
+        <script src="/supabase/config/client-config.js"></script>
+        <script type="module" src="/frontend/js/supabase-client.js"></script>
+        <script type="module" src="/frontend/js/site.js"></script>
+    </body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SLA — ServerX | Acuerdo de Nivel de Servicio Mejorado</title>
+    <meta name="description" content="Acuerdo de Nivel de Servicio (SLA) de ServerX, que define los niveles de disponibilidad del servicio, el SLA de soporte y los créditos por incumplimiento." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --border: #bdc3c7;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --info: #3498db;
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .legal-content { max-width: 900px; margin: 40px auto; line-height: 1.7; font-size: 1.05rem; }
+        .legal-content h2 { color: var(--primary); margin-top: 40px; border-bottom: 2px solid var(--border); padding-bottom: 5px; font-size: 1.8rem; }
+        .legal-content h3 { color: var(--accent); margin-top: 30px; font-size: 1.3rem; }
+        .sla-metric-box { padding: 20px; background: var(--surface); border-radius: 8px; text-align: center; margin-bottom: 30px; }
+        .sla-metric-box strong { font-size: 2.5rem; color: var(--success); display: block; margin-top: 5px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        th { background-color: var(--surface); color: var(--primary); font-weight: bold; }
+        .danger-row { background-color: #fce8e8; }
+        .warning-row { background-color: #fcf5e8; }
+        .info-box { background: #e0e6f8; border-left: 5px solid var(--info); padding: 15px; border-radius: 4px; margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="terms.html" style="text-decoration: none; color: var(--primary);">Términos</a>
+          <a href="privacy.html" style="text-decoration: none; color: var(--primary);">Privacidad</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section">
+          <h1 style="font-size: 2.5rem; color: var(--primary);">Acuerdo de Nivel de Servicio (SLA)</h1>
+          <p style="color:var(--muted); font-size: 1.1rem;">Última Actualización: 1 de Diciembre de 2025. Este documento establece los compromisos de disponibilidad, SLA de soporte y las compensaciones por incumplimiento.</p>
+        </section>
+
+        <div class="legal-content">
+
+            <h2>1. Alcance, Servicios Cubiertos y Definiciones</h2>
+            <p>Este Acuerdo de Nivel de Servicio (SLA) aplica a los planes Profesional y Empresarial y garantiza la disponibilidad de los siguientes servicios principales (el "Servicio"):</p>
+            
+            <ul style="list-style: disc; padding-left: 20px;">
+                <li>**Cómputo (Virtual Machines/Containers):** Disponibilidad de la instancia y conectividad de red.</li>
+                <li>**Almacenamiento (Bloque/Archivos):** Disponibilidad de lectura y escritura de los volúmenes de almacenamiento.</li>
+            </ul>
+
+            <h3>1.1. Disponibilidad Mensual (Uptime)</h3>
+            <p>Se define como la disponibilidad del Servicio principal, excluyendo el tiempo de mantenimiento programado. Se calcula como:</p>
+            $$ \text{Disponibilidad Mensual} = \frac{(\text{Minutos Totales en el Mes} - \text{Tiempo de Inactividad No Programado})}{\text{Minutos Totales en el Mes}} \times 100 $$
+
+            <div class="sla-metric-box">
+                <p style="margin: 0; color: var(--primary);">Compromiso de Disponibilidad Garantizada (Uptime)</p>
+                <strong style="color: var(--success);"><i class="fas fa-server" style="margin-right: 10px;"></i> 99.99%</strong>
+                <p style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;">Esto equivale a un máximo de 4.38 minutos de inactividad no programada por mes.</p>
+            </div>
+            
+            <div class="info-box">
+                <h4 style="margin-top: 0; color: var(--info);"><i class="fas fa-wrench" style="margin-right: 8px;"></i> Mantenimiento Programado</h4>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--primary);">El tiempo de inactividad debido a mantenimiento programado no cuenta como Tiempo de Inactividad No Programado. ServerX se compromete a notificar a los Clientes con **al menos 48 horas de antelación** y limitará el mantenimiento programado a un máximo de 4 horas por mes, idealmente fuera del horario laboral pico (02:00 a 06:00 AM, zona horaria UTC).</p>
+            </div>
+
+
+            <h2>2. Acuerdo de Nivel de Servicio de Soporte (SLA de Respuesta)</h2>
+            <p>Adicionalmente al SLA de Uptime, ServerX garantiza los siguientes Tiempos Máximos de Respuesta Inicial para tickets de soporte, dependiendo de la severidad del incidente reportado:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Severidad del Incidente</th>
+                        <th>Impacto</th>
+                        <th>Tiempo Máximo de Respuesta Inicial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**Crítico (S1)**</td>
+                        <td>Pérdida de servicio en producción, inactividad del sistema.</td>
+                        <td>**15 minutos**</td>
+                    </tr>
+                    <tr>
+                        <td>**Alto (S2)**</td>
+                        <td>Rendimiento degradado o funcionalidad clave afectada.</td>
+                        <td>**1 hora**</td>
+                    </tr>
+                    <tr>
+                        <td>**Medio (S3)**</td>
+                        <td>Problema menor o pregunta técnica que no afecta la producción.</td>
+                        <td>**4 horas**</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h2>3. Créditos de Servicio por Incumplimiento (Uptime)</h2>
+            <p>Si la Disponibilidad Mensual (Uptime) cae por debajo del 99.99%, el Cliente será elegible para un Crédito de Servicio, aplicado como un porcentaje de la cuota de servicio mensual afectada.</p>
+
+            <h3>3.1. Tabla de Créditos por Inactividad</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disponibilidad Mensual Lograda</th>
+                        <th>Tiempo de Inactividad Excedido (Máx. Minutos)</th>
+                        <th>Crédito de Servicio Aplicado (% de la cuota mensual)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>99.99% o superior</td>
+                        <td>4.38 minutos o menos</td>
+                        <td>0% (Sin incumplimiento)</td>
+                    </tr>
+                    <tr class="warning-row">
+                        <td>99.90% hasta 99.98%</td>
+                        <td>Hasta 43.8 minutos</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>99.00% hasta 99.89%</td>
+                        <td>Hasta 7.3 horas</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr class="danger-row">
+                        <td>Menos del 99.00%</td>
+                        <td>Más de 7.3 horas</td>
+                        <td>100% (Máximo)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.2. Proceso de Solicitud de Crédito</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-ticket-alt" style="color: var(--accent); margin-right: 8px;"></i> El Cliente debe presentar la reclamación mediante un **ticket de soporte específico** dentro de los treinta (30) días siguientes al mes de incumplimiento.</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-clipboard-list" style="color: var(--accent); margin-right: 8px;"></i> La reclamación debe incluir la fecha, hora y duración de la inactividad observada y el número de servicio afectado.</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-hourglass-half" style="color: var(--accent); margin-right: 8px;"></i> Las reclamaciones serán revisadas y el crédito, si procede, se aplicará en la factura del siguiente ciclo.</li>
+            </ul>
+            
+            <h2>4. Exclusiones del SLA</h2>
+            <p>El SLA no se aplica a ninguna indisponibilidad, suspensión o terminación de servicios causada por:</p>
+            
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-times-circle" style="color: var(--danger); margin-right: 8px;"></i> Mantenimiento programado notificado (según la Sección 1.1).</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-times-circle" style="color: var(--danger); margin-right: 8px;"></i> Fallas en la infraestructura, aplicaciones, *software* o sistema operativo del Cliente.</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-times-circle" style="color: var(--danger); margin-right: 8px;"></i> Uso de configuraciones no recomendadas o no soportadas por ServerX.</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-times-circle" style="color: var(--danger); margin-right: 8px;"></i> Ataques DDoS que impacten el servicio, siempre que ServerX haya aplicado las mitigaciones estándar.</li>
+                <li style="margin-bottom: 10px; color:var(--muted);"><i class="fas fa-times-circle" style="color: var(--danger); margin-right: 8px;"></i> Incumplimiento de los Términos de Servicio o falta de pago.</li>
+            </ul>
+            
+            <h2>5. Limitación de Compensación</h2>
+            <p>El Crédito de Servicio será la única y exclusiva compensación del Cliente. La compensación máxima en cualquier mes no excederá el 100% de la cuota mensual de servicio afectada.</p>
+        </div>
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Integraciones y Herramientas | ServerX</title>
+        <meta name="description" content="Descubra todas las integraciones oficiales de ServerX con herramientas líderes de DevOps, CI/CD, Monitoreo, Bases de Datos, y Finanzas Empresariales." />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <style>
+            :root {
+                --primary: #0D6EFD;
+                --secondary: #1a1d29;
+                --accent-blue: #0D6EFD;
+                --midnight: #0a0e1a;
+                --surface: #f8f9fa;
+                --border: #e1e4e8;
+                --text-dark: #1a1d29;
+                --text-gray: #6c757d;
+                --text-muted: #8b92a0;
+                --text-light: #ffffff;
+                --success: #28a745;
+                --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+                color: var(--text-dark);
+                background: var(--text-light);
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 40px;
+                border-bottom: 1px solid var(--border);
+                background: var(--text-light);
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--midnight);
+            }
+
+            .brand svg {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .nav a {
+                text-decoration: none;
+                color: var(--text-gray);
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+            .nav a:hover {
+                color: var(--primary);
+            }
+
+            .cta {
+                background: var(--primary);
+                color: var(--text-light);
+                padding: 10px 24px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+
+            .cta:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(13, 110, 253, 0.3);
+            }
+
+            main {
+                padding: 60px 40px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 3rem;
+                color: var(--midnight);
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                color: var(--text-muted);
+                text-align: center;
+                max-width: 800px;
+                margin: 0 auto 60px;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 80px 0;
+            }
+
+            .integration-category {
+                margin-bottom: 80px;
+            }
+
+            .integration-category h2 {
+                font-size: 2rem;
+                color: var(--midnight);
+                margin-bottom: 40px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .integration-category h2 i {
+                color: var(--primary);
+            }
+
+            .integration-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .integration-card {
+                background: var(--text-light);
+                border: 2px solid var(--border);
+                border-radius: 12px;
+                padding: 30px;
+                transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+                cursor: pointer;
+            }
+
+            .integration-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+                border-color: var(--primary);
+            }
+
+            .integration-card .icon {
+                font-size: 3rem;
+                color: var(--primary);
+                margin-bottom: 20px;
+                display: block;
+            }
+
+            .integration-card h3 {
+                font-size: 1.4rem;
+                color: var(--midnight);
+                margin-bottom: 12px;
+            }
+
+            .integration-card .muted {
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+
+            .integration-card .status {
+                display: inline-block;
+                background: #d4edda;
+                color: #155724;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+
+            .stats-section {
+                background: linear-gradient(135deg, var(--primary), #0a58ca);
+                color: var(--text-light);
+                padding: 60px 40px;
+                border-radius: 16px;
+                margin: 80px 0;
+                text-align: center;
+            }
+
+            .stats-section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+                color: var(--text-light);
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 40px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-item .number {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .stat-item .label {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+
+            .cta-section {
+                background: var(--surface);
+                padding: 60px 40px;
+                border-radius: 16px;
+                text-align: center;
+                margin-top: 80px;
+            }
+
+            .cta-section h2 {
+                color: var(--midnight);
+                margin-bottom: 20px;
+            }
+
+            .cta-section .muted {
+                color: var(--text-muted);
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            footer {
+                background: var(--secondary);
+                color: var(--text-light);
+                padding: 60px 40px 30px;
+                margin-top: 100px;
+            }
+
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+
+            .footer-brand strong {
+                font-size: 1.5rem;
+                color: var(--text-light);
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .footer-nav h4 {
+                color: var(--text-light);
+                margin-bottom: 15px;
+                font-size: 1.1rem;
+            }
+
+            .footer-nav a {
+                display: block;
+                color: #b8bcc4;
+                text-decoration: none;
+                margin-bottom: 10px;
+                transition: color 0.2s;
+            }
+
+            .footer-nav a:hover {
+                color: var(--text-light);
+            }
+
+            .footer-bottom {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 30px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                color: #b8bcc4;
+            }
+
+            .feature-highlight {
+                background: var(--surface);
+                padding: 40px;
+                border-radius: 12px;
+                margin: 60px 0;
+                border-left: 4px solid var(--primary);
+            }
+
+            .feature-highlight h3 {
+                color: var(--midnight);
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .feature-highlight p {
+                color: var(--text-muted);
+                font-size: 1.1rem;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2rem;
+                }
+
+                .integration-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .nav {
+                    display: none;
+                }
+
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="brand" aria-label="ServerX">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0D6EFD"/></svg>
+                    <span>ServerX</span>
+                </div>
+                <nav class="nav" aria-label="Navegación principal del sitio">
+                    <a href="index.html">Inicio</a>
+                    <a href="features.html">Características</a>
+                    <a href="pricing.html">Precios</a>
+                    <a href="docs.html">Documentación</a>
+                    <a href="contact.html">Soporte</a>
+                    <a class="cta" href="register.html">Comenzar Ahora</a>
+                </nav>
+            </header>
+
+            <main>
+                <h1>Integraciones y Socios</h1>
+                <p class="subtitle">Conecta ServerX a tus herramientas favoritas de desarrollo, operaciones y negocio. Extiende el poder de tu infraestructura con integraciones oficiales y certificadas.</p>
+
+                <div class="stats-section">
+                    <h2>ServerX en Números</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="number">50+</div>
+                            <div class="label">Integraciones Oficiales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">99.9%</div>
+                            <div class="label">Tiempo de Actividad</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">24/7</div>
+                            <div class="label">Soporte Técnico</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">5ms</div>
+                            <div class="label">Latencia Promedio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-code-branch"></i> Código Fuente & CI/CD</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fab fa-github icon" aria-hidden="true"></i>
+                            <h3>GitHub Actions</h3>
+                            <p class="muted">Despliegue automático, gestión de secretos y estados de commit.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-gitlab icon" aria-hidden="true"></i>
+                            <h3>GitLab Pipelines</h3>
+                            <p class="muted">Integración completa con el entorno CI/CD y registro de contenedores de GitLab.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-hammer icon" aria-hidden="true"></i>
+                            <h3>Jenkins</h3>
+                            <p class="muted">Plugin oficial para la orquestación avanzada de tareas de build y deploy.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-bitbucket icon" aria-hidden="true"></i>
+                            <h3>Bitbucket Pipelines</h3>
+                            <p class="muted">Conexión de repositorios y sincronización de despliegues.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-rocket icon" aria-hidden="true"></i>
+                            <h3>CircleCI</h3>
+                            <p class="muted">Automatización de pruebas y despliegues con configuración simple.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-truck icon" aria-hidden="true"></i>
+                            <h3>Travis CI</h3>
+                            <p class="muted">Integración continua para proyectos open source y privados.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-cogs"></i> Infraestructura como Código & DevOps</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fas fa-file-code icon" aria-hidden="true"></i>
+                            <h3>Terraform</h3>
+                            <p class="muted">Proveedor oficial para gestionar y versionar toda tu infraestructura cloud.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-book icon" aria-hidden="true"></i>
+                            <h3>Ansible</h3>
+                            <p class="muted">Módulos para configuración y aprovisionamiento declarativo de máquinas virtuales.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-kickstarter icon" aria-hidden="true"></i>
+                            <h3>Kubernetes</h3>
+                            <p class="muted">Integración nativa con clústeres gestionados ServerX K8s y CLI.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-fire-extinguisher icon" aria-hidden="true"></i>
+                            <h3>Helm</h3>
+                            <p class="muted">Gestor de paquetes para Kubernetes. Despliegues de aplicaciones complejas con charts.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-docker icon" aria-hidden="true"></i>
+                            <h3>Docker</h3>
+                            <p class="muted">Soporte completo para contenedores Docker y Docker Compose.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-dharmachakra icon" aria-hidden="true"></i>
+                            <h3>Vagrant</h3>
+                            <p class="muted">Gestión de entornos de desarrollo locales conectados a ServerX.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="feature-highlight">
+                    <h3>API Abierta y Documentada</h3>
+                    <p>Construye tus propias integraciones con nuestra API REST completamente documentada. Accede a todas las funcionalidades de ServerX desde tu código.</p>
+                </div>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-chart-area"></i> Monitoreo y Observabilidad</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fas fa-chart-bar icon" aria-hidden="true"></i>
+                            <h3>Prometheus</h3>
+                            <p class="muted">Exportadores de métricas nativos y scrape targets automáticos.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-tachometer-alt icon" aria-hidden="true"></i>
+                            <h3>Grafana</h3>
+                            <p class="muted">Paneles de control preconfigurados para la visualización de métricas de infraestructura.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-bug icon" aria-hidden="true"></i>
+                            <h3>Sentry</h3>
+                            <p class="muted">Seguimiento de logs de errores en tiempo real y alerta de incidentes de aplicación.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-file-medical-alt icon" aria-hidden="true"></i>
+                            <h3>ELK Stack</h3>
+                            <p class="muted">Centralización de logs de infraestructura con integración Logstash y Filebeat.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-heartbeat icon" aria-hidden="true"></i>
+                            <h3>Datadog</h3>
+                            <p class="muted">Monitoreo en tiempo real de infraestructura, aplicaciones y logs.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-wave-square icon" aria-hidden="true"></i>
+                            <h3>New Relic</h3>
+                            <p class="muted">Análisis de rendimiento de aplicaciones y trazado distribuido.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-database"></i> Almacenamiento y Bases de Datos</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fas fa-server icon" aria-hidden="true"></i>
+                            <h3>PostgreSQL Gestionado</h3>
+                            <p class="muted">Despliegue fácil, backups automáticos y alta disponibilidad para PostgreSQL.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-leaf icon" aria-hidden="true"></i>
+                            <h3>MongoDB Atlas</h3>
+                            <p class="muted">Conectividad optimizada y baja latencia a clústeres de MongoDB Atlas.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-aws icon" aria-hidden="true"></i>
+                            <h3>Amazon S3 / R2</h3>
+                            <p class="muted">Acceso directo a almacenamiento de objetos compatible con S3 para backups y archivos estáticos.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-warehouse icon" aria-hidden="true"></i>
+                            <h3>Redis Cache</h3>
+                            <p class="muted">Servicio de caché en memoria de alto rendimiento y fácil integración con tus aplicaciones.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-database icon" aria-hidden="true"></i>
+                            <h3>MySQL</h3>
+                            <p class="muted">Base de datos MySQL gestionada con replicación y backups automáticos.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-fire icon" aria-hidden="true"></i>
+                            <h3>Firebase</h3>
+                            <p class="muted">Sincronización con Firebase Realtime Database y Cloud Firestore.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-shield-virus"></i> Finanzas y Seguridad Empresarial</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fab fa-stripe icon" aria-hidden="true"></i>
+                            <h3>Stripe Billing</h3>
+                            <p class="muted">Sincronización automática de datos de uso de recursos para facturación.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-user-lock icon" aria-hidden="true"></i>
+                            <h3>Okta / OAuth 2.0</h3>
+                            <p class="muted">Gestión de identidad y acceso (IAM) para el panel de control y la API.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-search-dollar icon" aria-hidden="true"></i>
+                            <h3>Splunk</h3>
+                            <p class="muted">Envío en tiempo real de métricas de seguridad y logs de acceso a Splunk.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-salesforce icon" aria-hidden="true"></i>
+                            <h3>Salesforce</h3>
+                            <p class="muted">Conexión de datos de facturación y soporte para informes financieros.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
+                            <h3>Auth0</h3>
+                            <p class="muted">Autenticación y autorización para aplicaciones modernas.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-lock icon" aria-hidden="true"></i>
+                            <h3>HashiCorp Vault</h3>
+                            <p class="muted">Gestión segura de secretos y credenciales de infraestructura.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="integration-category">
+                    <h2><i class="fas fa-comments"></i> Notificaciones y Comunicación</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <i class="fab fa-slack icon" aria-hidden="true"></i>
+                            <h3>Slack</h3>
+                            <p class="muted">Webhooks para alertas de despliegue, monitoreo e incidentes críticos.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-discord icon" aria-hidden="true"></i>
+                            <h3>Discord</h3>
+                            <p class="muted">Envío de notificaciones y estados del sistema a canales de operaciones.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-microsoft icon" aria-hidden="true"></i>
+                            <h3>Microsoft Teams</h3>
+                            <p class="muted">Integración empresarial para notificaciones y alertas en tiempo real.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-envelope icon" aria-hidden="true"></i>
+                            <h3>SendGrid</h3>
+                            <p class="muted">Envío de notificaciones por email con plantillas personalizadas.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fab fa-telegram icon" aria-hidden="true"></i>
+                            <h3>Telegram</h3>
+                            <p class="muted">Alertas instantáneas a través de bots de Telegram.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+
+                        <div class="integration-card">
+                            <i class="fas fa-bell icon" aria-hidden="true"></i>
+                            <h3>PagerDuty</h3>
+                            <p class="muted">Gestión de incidentes y escalamiento automático de alertas.</p>
+                            <span class="status">Compatible (Oficial)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-section">
+                    <h2>¿No encuentras tu herramienta?</h2>
+                    <p class="muted">Usa nuestra API Abierta para crear tu propia integración o solicita una nueva.</p>
+                    <a class="cta" href="api-reference.html" style="margin-right: 15px;">Ver Referencia API</a>
+                    <a href="contact.html" style="text-decoration: none; color: var(--text-dark); font-weight: bold;">Solicitar Integración</a>
+                </section>
+
+            </main>
+
+            <footer>
+                <div class="footer-content container">
+                    <div class="footer-brand">
+                        <strong>ServerX</strong>
+                        <div class="muted">Proveedor de infraestructura cloud de alto rendimiento.</div>
+                    </div>
+
+                    <nav class="footer-nav">
+                        <h4>Productos</h4>
+                        <a href="pricing.html">Planes de Hosting</a>
+                        <a href="docs.html">Documentación</a>
+                        <a href="api-reference.html">Referencia API</a>
+                    </nav>
+                    <nav class="footer-nav">
+                        <h4>Compañía</h4>
+                        <a href="about.html">Acerca de ServerX</a>
+                        <a href="careers.html">Carreras</a>
+                        <a href="contact.html">Contáctanos</a>
+                    </nav>
+                    <nav class="footer-nav">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Términos de Servicio</a>
+                        <a href="privacy.html">Política de Privacidad</a>
+                        <a href="gdpr.html">Cumplimiento GDPR</a>
+                    </nav>
+                </div>
+                
+                <div class="footer-bottom container">
+                    <div class="muted">© 2025 ServerX Technologies, Inc. Todos los derechos reservados.</div>
+                    <a href="status.html" class="muted status-link" style="text-decoration: none;">Estado del Sistema</a>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Estado del Servicio — ServerX</title>
+    <meta name="description" content="Estado del servicio y histórico de operaciones en tiempo real." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <style>
+      :root {
+        --success: #4ade80;
+        --warning: #fbbf24;
+        --error: #ef4444;
+        --primary: #0b5fff;
+        --surface: #f8f9fa;
+        --border: #e1e4e8;
+        --text-dark: #1a1d29;
+        --text-muted: #6c757d;
+      }
+
+      .status-hero {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, var(--primary), #0a4fd9);
+        color: white;
+        border-radius: 16px;
+        margin-bottom: 40px;
+      }
+
+      .status-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255,255,255,0.15);
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+
+      .status-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--success);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .service-card {
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      }
+
+      .service-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .service-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .service-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .service-status.online {
+        color: var(--success);
+      }
+
+      .service-status.degraded {
+        color: var(--warning);
+      }
+
+      .service-status.offline {
+        color: var(--error);
+      }
+
+      .service-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border);
+      }
+
+      .metric {
+        text-align: center;
+      }
+
+      .metric-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .metric-label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .uptime-chart {
+        display: flex;
+        gap: 3px;
+        margin-top: 15px;
+      }
+
+      .uptime-bar {
+        flex: 1;
+        height: 40px;
+        background: var(--success);
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .uptime-bar.degraded {
+        background: var(--warning);
+      }
+
+      .uptime-bar.offline {
+        background: var(--error);
+      }
+
+      .incidents-section {
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .incidents-section h2 {
+        margin-bottom: 20px;
+        color: var(--text-dark);
+      }
+
+      .incident {
+        padding: 20px;
+        background: var(--surface);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--success);
+      }
+
+      .incident.warning {
+        border-left-color: var(--warning);
+      }
+
+      .incident.error {
+        border-left-color: var(--error);
+      }
+
+      .incident-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .incident-title {
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .incident-date {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .incident-description {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .stats-overview {
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .stat-box {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .stat-label {
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      .region-status {
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .region-list {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .region-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: var(--surface);
+        border-radius: 8px;
+      }
+
+      .region-name {
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .region-latency {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 768px) {
+        .status-hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .service-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand" aria-label="ServerX">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="contact.html">Contacto</a>
+          <a class="cta" href="register.html">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <div class="status-hero">
+          <h1>Estado del Servicio</h1>
+          <p>Monitoreo en tiempo real de toda la infraestructura ServerX</p>
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            Todos los servicios operativos
+          </div>
+        </div>
+
+        <div class="stats-overview">
+          <h2>Métricas Globales</h2>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-value">99.99%</div>
+              <div class="stat-label">Uptime (30 días)</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">42ms</div>
+              <div class="stat-label">Latencia Promedio</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Incidentes Activos</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">8.5M</div>
+              <div class="stat-label">Peticiones/Hora</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="margin-bottom: 20px;">Servicios Principales</h2>
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">API REST</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Endpoint principal para todas las operaciones</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">99.99%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">38ms</div>
+                <div class="metric-label">Respuesta</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">Panel Administrativo</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Interfaz web de gestión</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">210ms</div>
+                <div class="metric-label">Carga</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">Autenticación</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">OAuth 2.0 y gestión de tokens</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">99.98%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">52ms</div>
+                <div class="metric-label">Respuesta</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">Webhooks</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Sistema de notificaciones en tiempo real</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">99.97%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">95ms</div>
+                <div class="metric-label">Entrega</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">Base de Datos</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">PostgreSQL cluster principal</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">12ms</div>
+                <div class="metric-label">Query</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-name">CDN</div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Red de distribución de contenido</p>
+            <div class="service-metrics">
+              <div class="metric">
+                <div class="metric-value">99.99%</div>
+                <div class="metric-label">Uptime</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value">28ms</div>
+                <div class="metric-label">TTFB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="region-status">
+          <h2>Estado por Región</h2>
+          <div class="region-list">
+            <div class="region-item">
+              <div>
+                <div class="region-name">🇺🇸 Norte América (Virginia)</div>
+                <div class="region-latency">Latencia: 35ms</div>
+              </div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <div class="region-item">
+              <div>
+                <div class="region-name">🇪🇺 Europa (Frankfurt)</div>
+                <div class="region-latency">Latencia: 42ms</div>
+              </div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <div class="region-item">
+              <div>
+                <div class="region-name">🇸🇬 Asia (Singapur)</div>
+                <div class="region-latency">Latencia: 58ms</div>
+              </div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+            <div class="region-item">
+              <div>
+                <div class="region-name">🇧🇷 América del Sur (São Paulo)</div>
+                <div class="region-latency">Latencia: 48ms</div>
+              </div>
+              <div class="service-status online">
+                <span class="status-dot"></span>
+                Operativo
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="incidents-section">
+          <h2>Últimos Incidentes</h2>
+          <div class="incident">
+            <div class="incident-header">
+              <div class="incident-title">✓ Resuelto: Latencia elevada en API</div>
+              <div class="incident-date">25 nov 2025, 14:22 UTC</div>
+            </div>
+            <div class="incident-description">
+              Se detectó un aumento temporal en la latencia de respuesta de la API durante 8 minutos. El problema fue causado por un pico inesperado de tráfico y se resolvió mediante el escalado automático de recursos.
+            </div>
+          </div>
+
+          <div class="incident">
+            <div class="incident-header">
+              <div class="incident-title">✓ Resuelto: Mantenimiento programado CDN</div>
+              <div class="incident-date">20 nov 2025, 03:00 UTC</div>
+            </div>
+            <div class="incident-description">
+              Mantenimiento programado de la red CDN en la región de Europa. La operación se completó exitosamente sin afectar a los usuarios finales.
+            </div>
+          </div>
+
+          <div class="incident">
+            <div class="incident-header">
+              <div class="incident-title">✓ Resuelto: Degradación en webhooks</div>
+              <div class="incident-date">18 nov 2025, 18:45 UTC</div>
+            </div>
+            <div class="incident-description">
+              Algunos webhooks experimentaron retrasos de hasta 2 minutos en su entrega. Se identificó y corrigió un problema en el sistema de cola de mensajes.
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--surface); padding: 30px; border-radius: 12px; text-align: center;">
+          <h3 style="margin-bottom: 15px;">¿Necesitas reportar un problema?</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px;">Nuestro equipo de soporte está disponible 24/7 para ayudarte.</p>
+          <a href="contact.html" class="cta">Contactar Soporte</a>
+        </div>
+      </main>
+
+      <footer style="margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--border);">
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--text-muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--text-muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--text-muted);text-decoration:none">GDPR</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>

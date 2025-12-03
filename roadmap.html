@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hoja de ruta — ServerX | Roadmap de Desarrollo</title>
+    <meta name="description" content="Características, mejoras y proyectos clave planeados por trimestre para el crecimiento de la plataforma ServerX." />
+    <link rel="stylesheet" href="/frontend/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos en línea para visualización, asumiendo variables de color */
+        :root {
+            --primary: #2c3e50;
+            --accent: #0b5fff;
+            --muted: #7f8c8d;
+            --surface: #ecf0f1;
+            --border: #bdc3c7;
+            --planned: #3498db;     /* Azul para Planificado */
+            --progress: #f39c12;    /* Naranja para En Progreso */
+            --completed: #2ecc71;   /* Verde para Completo */
+        }
+        .header-section { margin-top: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); text-align: center; }
+        .roadmap-container { max-width: 900px; margin: 40px auto; }
+        .roadmap-quarter { margin-bottom: 50px; border-left: 4px solid var(--border); padding-left: 20px; position: relative; }
+        .roadmap-quarter h2 { margin-top: 0; padding: 5px 0; color: var(--accent); font-size: 1.8rem; }
+        .roadmap-quarter h2::before { content: ''; position: absolute; left: -14px; top: 8px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 3px var(--accent); }
+        .task-list { list-style: none; padding: 0; }
+        .task-list li { margin-bottom: 15px; padding: 15px; border-radius: 8px; background: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+        .task-title { font-weight: bold; color: var(--primary); display: flex; align-items: center; }
+        .status-tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-left: auto; }
+        .status-planned { background: var(--planned); color: white; }
+        .status-progress { background: var(--progress); color: white; }
+        .status-review { background: var(--completed); color: white; }
+        .task-description { color: var(--muted); font-size: 0.95rem; margin-top: 5px; }
+        .task-icon { margin-right: 8px; color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
+        <div class="brand" aria-label="ServerX" style="display: flex; align-items: center; font-size: 1.2rem; font-weight: bold;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-right: 8px;"><rect width="24" height="24" rx="6" fill="#0b5fff"/></svg>
+          <span>ServerX</span>
+        </div>
+        <nav class="nav" aria-label="Navegación principal" style="display: flex; gap: 15px;">
+          <a href="index.html" style="text-decoration: none; color: var(--primary);">Inicio</a>
+          <a href="features.html" style="text-decoration: none; color: var(--primary);">Características</a>
+          <a href="updates.html" style="text-decoration: none; color: var(--primary);">Actualizaciones</a>
+          <a class="cta" href="register.html" style="background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Comenzar</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="header-section">
+          <h1 style="font-size: 2.5rem; color: var(--primary);">Hoja de Ruta Pública (Roadmap)</h1>
+          <p style="color:var(--muted); font-size: 1.1rem;">Nuestra visión y los proyectos trimestrales que impulsarán la innovación y la estabilidad de su infraestructura en la nube.</p>
+          <p style="color:var(--danger); font-size: 0.9rem; font-weight: bold; margin-top: 15px;"><i class="fas fa-exclamation-triangle"></i> Descargo de responsabilidad: Los plazos y características están sujetos a cambios basados en las prioridades del negocio y el feedback de los clientes.</p>
+        </section>
+
+        <section class="roadmap-container" aria-labelledby="roadmap-title">
+            
+            <div class="roadmap-quarter">
+                <h2>Q4 2025 (Octubre - Diciembre)</h2>
+                <ul class="task-list">
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-chart-pie"></i></span> Dashboard v2: Visualización de Costos Avanzada
+                            <span class="status-tag status-review">Finalizado</span>
+                        </div>
+                        <div class="task-description">Rediseño completo del panel administrativo con visualización detallada de costos en tiempo real y proyecciones de gasto por recurso y proyecto.</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-terminal"></i></span> CLI Avanzada (v1.0) para Automatización
+                            <span class="status-tag status-review">Finalizado</span>
+                        </div>
+                        <div class="task-description">Lanzamiento de la herramienta de línea de comandos (CLI) completa para la gestión y automatización de la infraestructura como código (IaC).</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-database"></i></span> Soporte para Proveedores de Bases de Datos NoSQL
+                            <span class="status-tag status-progress">En Progreso</span>
+                        </div>
+                        <div class="task-description">Integración de servicios gestionados de MongoDB y Cassandra para bases de datos distribuidas de alta velocidad.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="roadmap-quarter">
+                <h2>Q1 2026 (Enero - Marzo)</h2>
+                <ul class="task-list">
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-map-marker-alt"></i></span> Soporte Multi-Región Avanzado
+                            <span class="status-tag status-progress">En Progreso</span>
+                        </div>
+                        <div class="task-description">Ampliación de la cobertura a la región Asia-Pacífico y optimización del *peering* de red para la replicación de datos *cross-region*.</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-cloud-upload-alt"></i></span> Backup y Disaster Recovery Automatizado
+                            <span class="status-tag status-planned">Planificado</span>
+                        </div>
+                        <div class="task-description">Implementación de políticas de *Backup* 3-2-1 con recuperación automática y pruebas de DR (Disaster Recovery) simplificadas para el usuario.</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-store"></i></span> Marketplace de Plantillas de Despliegue (Terraform/Ansible)
+                            <span class="status-tag status-planned">Planificado</span>
+                        </div>
+                        <div class="task-description">Lanzamiento de una tienda de plantillas preconfiguradas para desplegar entornos comunes (ej. Kubernetes, LAMP stack) con un solo clic.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="roadmap-quarter">
+                <h2>Q2 2026 (Abril - Junio)</h2>
+                <ul class="task-list">
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-brain"></i></span> Machine Learning para Optimización de Costos
+                            <span class="status-tag status-planned">Planificado</span>
+                        </div>
+                        <div class="task-description">Implementación de un motor de IA que analiza patrones de uso y recomienda automáticamente el *downscaling* o reconfiguración de recursos para reducir costos.</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-certificate"></i></span> Certificaciones de Cumplimiento (HIPAA y FedRAMP)
+                            <span class="status-tag status-planned">Planificado</span>
+                        </div>
+                        <div class="task-description">Obtención de certificaciones de cumplimiento para expandir el servicio a sectores de salud y gobierno en Norteamérica.</div>
+                    </li>
+                    <li class="card">
+                        <div class="task-title">
+                            <span class="task-icon"><i class="fas fa-exchange-alt"></i></span> Integración Nativa con Plataformas de CI/CD
+                            <span class="status-tag status-planned">Planificado</span>
+                        </div>
+                        <div class="task-description">Desarrollo de *plugins* nativos para Jenkins, GitLab CI y Azure DevOps para simplificar los flujos de integración y despliegue continuo.</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="color:var(--primary); font-size: 1.1rem; font-weight: 600;">¿Tienes una sugerencia de feature?</p>
+                <a href="contact.html?subject=Sugerencia de Roadmap" class="cta" style="background: var(--success); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;"><i class="fas fa-lightbulb"></i> Enviar Feedback</a>
+            </div>
+            
+        </section>
+      </main>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap; padding: 20px 0; border-top: 1px solid var(--border);">
+          <div>
+            <strong>ServerX</strong>
+            <div style="color:var(--muted);font-size:0.95rem">© 2025 ServerX. Todos los derechos reservados.</div>
+          </div>
+          <nav style="display:flex;gap:12px;align-items:center">
+            <a href="cookies.html" style="color:var(--muted);text-decoration:none">Cookies</a>
+            <a href="gdpr.html" style="color:var(--muted);text-decoration:none">GDPR</a>
+            <a href="status.html" style="color:var(--muted);text-decoration:none">Estado</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/supabase/config/client-config.js"></script>
+    <script type="module" src="/frontend/js/supabase-client.js"></script>
+    <script type="module" src="/frontend/js/site.js"></script>
+  </body>
+</html>
